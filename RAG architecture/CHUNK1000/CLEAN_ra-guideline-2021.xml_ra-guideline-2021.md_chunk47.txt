@@ -1,0 +1,9 @@
+<ul>
+<li>PICO = population, intervention, comparator, and outcomes; Supp. App. 2 = Supplementary Appendix 2, available on the Arthritis Care &amp; Research website at http://onlinelibrary.wiley.com/doi/10.1002/acr.24596/abstract; DMARD = disease-modifying antirheumatic drug.</li>
+</ul>
+
+<p>† This recommendation refers only to the initial prescribing of methotrexate and is not meant to limit further dose escalation, which often provides additional efficacy.</p>
+
+<p>‡ The first certainty of evidence applies to the first listed option; the second certainty of evidence applies to the second option.</p>
+
+<h1>Table 4. Treatment modification*</h1>

@@ -1,0 +1,11 @@
+<ul>
+<li>Dosing intervals obtained from prescribing information provided online by pharmaceutical companies. Adapted from the 2017 American College of Rheumatology/American Association of Hip and Knee Surgeons guideline (26). DMARDs = disease-modifying antirheumatic drugs; SLE = systemic lupus erythematosus; IV = intravenous; PO = by mouth; SC = subcutaneous; IL-17 = interleukin-17.</li>
+</ul>
+
+<p>** Correction added on 24 August 2022, after first online publication on 20 June 2022. One of the biologic medications to withhold prior to surgery was omitted from Table 2. Golimumab (Simponi) and the corresponding dosing/timing have been added.</p>
+
+<p>† Recommendation that has changed since 2017.</p>
+
+<p>‡ Severe SLE indicates organ-threatening disease.</p>
+
+<p>§ Drug added for 2022 update.</p>

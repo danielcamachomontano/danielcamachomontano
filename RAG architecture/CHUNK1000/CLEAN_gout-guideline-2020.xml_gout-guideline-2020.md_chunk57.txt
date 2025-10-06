@@ -1,0 +1,15 @@
+<h1>Table 7. Management of lifestyle factors*</h1>
+
+<p>|Recommendation|PICO|Certainty of evidence|
+|---|---|---|
+|For patients with gout, regardless of disease activity, we conditionally recommend limiting alcohol intake.|41|Low|
+|For patients with gout, regardless of disease activity, we conditionally recommend limiting purine intake.|42|Low|
+|For patients with gout, regardless of disease activity, we conditionally recommend limiting high-fructose corn syrup.|43|Very low|
+|For overweight/obese patients with gout, regardless of disease activity, we conditionally recommend weight loss.|46|Very low|
+|For patients with gout, regardless of disease activity, we conditionally recommend against adding vitamin C supplementation.|48|Low|</p>
+
+<ul>
+<li>PICO = population, intervention, comparator, outcomes.</li>
+</ul>
+
+<h1>Table 8. Management of concurrent medications*</h1>

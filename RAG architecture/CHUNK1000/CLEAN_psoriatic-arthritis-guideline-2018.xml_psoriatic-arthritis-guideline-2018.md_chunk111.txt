@@ -1,0 +1,6 @@
+|9. Switch to a TNFi biologic over an IL-12/23i biologic (PICO 52)|Low (72, 73, 76, 98, 100)|
+|Conditional recommendation based on low-quality evidence; may consider switching to an IL-12/23i if the patient has severe psoriasis or contraindications to TNFi biologics, including congestive heart failure, previous serious infections, recurrent infections, or demyelinating disease, or if the patient prefers less frequent drug administration.| |
+|10. Switch to a TNFi biologic over switching to another OSM (PICO 49)|Low (72, 73, 76, 83–85)|
+|Conditional recommendation based on low-quality evidence; may consider switching to another OSM# if the patient prefers an oral medication over an injection, or if the patient has contraindications to TNFi biologics, including congestive heart failure, previous serious infections, recurrent infections, or demyelinating disease.| |
+|11. Switch to an IL-17i biologic over an IL-12/23i biologic (PICO 54)|Low (89, 90, 92, 93, 98–100)|
+|---|---|

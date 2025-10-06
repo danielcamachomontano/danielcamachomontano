@@ -1,0 +1,9 @@
+<ul>
+<li>MMR = measles, mumps, and rubella (vaccine); PPSV23 = pneumococcal polysaccharide vaccine; PCV13 = pneumococcal conjugate vaccine; csDMARDs = conventional synthetic disease-modifying antirheumatic drugs; IVIG = intravenous immunoglobulin; IBD = inflammatory bowel disease; bDMARDs = biologic DMARDs; TNF = tumor necrosis factor; IL-6R = interleukin-6 receptor; BLyS = B lymphocyte stimulator; tsDMARDs = targeted synthetic DMARDs; CNS = central nervous system; anti-GBM = anti–glomerular basement membrane (disease).</li>
+</ul>
+
+<p>† COVID-19 vaccines were not included in this guideline because of the fast-changing face of the pandemic and related literature.</p>
+
+<p>‡ The recently approved pneumococcal vaccines, PCV15 and PCV20, were not included in the evidence review but are discussed in the text with reference to current Centers for Disease Control and Prevention guidelines.</p>
+
+<h1>Table 2. Glossary of terms</h1>

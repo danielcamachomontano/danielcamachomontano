@@ -1,0 +1,7 @@
+| Thermal interventions                     |                       | 🟡 Conditionally recommended |                       |
+| Paraffin                                  |                       |                       |                       |
+| Radiofrequency ablation                   |                       |                       |                       |
+| Massage therapy                           |                       |                       |                       |
+| Manual therapy with/without exercise      |                       | 🟢 Strongly recommended |                       |
+| Iontophoresis                             | 🔴 Strongly recommended against (First carpometacarpal) |                       |                       |
+| Pulsed vibration therapy                  | 🔴 Strongly recommended against |                       |                       |

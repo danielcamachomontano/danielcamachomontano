@@ -1,0 +1,7 @@
+|Rituximab|375 mg/m² (IV) weekly for 4 doses or 1,000 mg on days 1 and 15 (adults); or 375 mg/m² (IV) weekly for 4 doses or 575 mg/m² for patients with body surface area ≤1.5m or 750 mg/m² for patients with body surface area &gt;1.5m² with a typical maximum of 1 gm per infusion (both for 2 doses, days 1 and 15) (children)|
+|Mepolizumab|300 mg (SC) every 4 weeks (adults)|
+|Remission maintenance therapy| |
+|Methotrexate, azathioprine, mycophenolate mofetil|Same dosing regimen as in remission induction therapy|
+|Rituximab|500 mg (IV) every 6 months or 1 gm (IV) every 4 months (adults), 250 mg/m² (IV) every 6 months (children), or other doses|
+|Mepolizumab|300 mg (SC) every 4 weeks|
+|Omalizumab|300–600 mg (SC) every 2–4 weeks|</p>

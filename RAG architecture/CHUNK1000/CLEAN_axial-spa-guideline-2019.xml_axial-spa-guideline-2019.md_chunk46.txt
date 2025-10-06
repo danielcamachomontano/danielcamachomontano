@@ -1,0 +1,8 @@
+|28. In adults receiving treatment with an originator TNFi, we strongly recommend continuing treatment with the originator TNFi over mandated switching to its biosimilar.|Very low|63|
+|29. We strongly recommend treatment with physical therapy over no treatment with physical therapy.†|Low|19|
+|30. In adults receiving treatment with TNFi, we conditionally recommend against co-treatment with low-dose methotrexate.|Low|64|
+|31. We conditionally recommend advising unsupervised back exercises.†|Moderate|20|
+|32. We conditionally recommend fall evaluation and counseling.†|Very low|51|
+|33. We conditionally recommend participation in formal group or individual self-management education.†|Moderate|48|
+|34. In adults with spinal fusion or advanced spinal osteoporosis, we strongly recommend against treatment with spinal manipulation.†|Very low|21|
+|35. In adults with advanced hip arthritis, we strongly recommend treatment with total hip arthroplasty over no surgery.†|Very low|25|

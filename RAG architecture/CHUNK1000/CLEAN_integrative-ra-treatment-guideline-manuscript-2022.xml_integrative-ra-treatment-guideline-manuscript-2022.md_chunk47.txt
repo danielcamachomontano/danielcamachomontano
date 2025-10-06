@@ -1,0 +1,6 @@
+|For patients with knee involvement, we conditionally recommend use of bracing and/or orthoses over no bracing and/or orthoses.|No studies met eligibility criteria| |11|
+|We conditionally recommend use of joint protection techniques over no joint protection techniques.|Low| |12|
+|We conditionally recommend use of activity pacing, energy conservation, activity modification, and/or fatigue management over no activity pacing, energy conservation, activity modification, and/or fatigue management.|No studies met eligibility criteria| |13|
+|We conditionally recommend use of assistive devices over no assistive devices.|No studies met eligibility criteria| |14|
+|We conditionally recommend use of adaptive equipment over no adaptive equipment.|No studies met eligibility criteria| |15|
+|We conditionally recommend use of environmental adaptations over no environmental adaptations.|No studies met eligibility criteria| |16|

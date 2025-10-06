@@ -1,0 +1,7 @@
+<p>|Recommendation|Certainty of evidence|PICO questions|Evidence Summary page nos. in Supplementary Appendix 3†|
+|---|---|---|---|
+|We conditionally recommend participation in comprehensive occupational therapy over no comprehensive occupational therapy.|Very low| |17|
+|We conditionally recommend participation in comprehensive physical therapy over no comprehensive physical therapy.|Very low| |18|
+|For patients with hand involvement, we conditionally recommend performing hand therapy exercises over no hand therapy exercises.|Low| |8|
+|For patients with hand and/or wrist involvement and/or deformity, we conditionally recommend use of splinting, orthoses, and/or compression over no splinting, orthoses, and/or compression.|Very low| |9|
+|For patients with foot and/or ankle involvement, we conditionally recommend use of bracing, orthoses, and/or taping over no bracing, orthoses, and/or compression.|Very low| |10|

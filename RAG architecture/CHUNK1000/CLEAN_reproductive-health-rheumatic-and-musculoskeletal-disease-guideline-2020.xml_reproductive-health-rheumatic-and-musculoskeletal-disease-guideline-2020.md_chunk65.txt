@@ -1,0 +1,7 @@
+<h1>Table 2. Recommendations regarding medication use for men with rheumatic and musculoskeletal disease who are planning to father a child</h1>
+
+<p>|Strongly recommend|Conditionally recommend continuing|Strongly recommend discontinuing|Conditionally recommend discontinuing|Unable to make a recommendation due to limited data|
+|---|---|---|---|---|
+| Azathioprine/6-mercaptopurine, Colchicine, Hydroxychloroquine, Tumor necrosis factor inhibitors (all)                | Anakinra, Cyclooxygenase 2 inhibitors, Cyclosporine, Leflunomide, Methotrexate, Mycophenolate mofetil, Mycophenolic acid, Nonsteroidal antiinflammatory drugs, Rituximab, Sulfasalazine (semen analysis if delayed conception), Tacrolimus | Cyclophosphamide (discontinue 12 weeks prior to attempted conception) | Thalidomide (discontinue 4 weeks prior to attempted conception) | Abatacept, Apremilast, Baricitinib, Belimumab, Secukinumab, Tocilizumab, Tofacitinib, Ustekinumab |</p>
+
+<h1>Table 3.</h1>

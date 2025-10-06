@@ -1,0 +1,7 @@
+| Kinesiotaping                             | 🟡 Conditionally recommended (First carpometacarpal) |                       |                       |
+| Hand orthosis                             | 🟢 Strongly recommended (First carpometacarpal) |                       |                       |
+| Hand orthosis                             | 🟡 Conditionally recommended (Other joints) |                       |                       |
+| Modified shoes                            | 🔴 Strongly recommended against |                       |                       |
+| Lateral and medial wedged insoles        | 🔴 Strongly recommended against |                       |                       |
+| Acupuncture                               |                       | 🟡 Conditionally recommended |                       |
+| Thermal interventions                     |                       | 🟡 Conditionally recommended |                       |

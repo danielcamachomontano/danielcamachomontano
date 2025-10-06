@@ -1,0 +1,7 @@
+|4. Treat with an OSM over an IL-17i biologic (PICO 12)|Very low|
+|Conditional recommendation based on very-low-quality evidence; may consider an IL-17i biologic if the patient has severe psoriasis and/or severe PsA.| |
+|5. Treat with an OSM over an IL-12/23i biologic (PICO 11)|Very low|
+|Conditional recommendation based on very-low-quality evidence; may consider an IL-12/23i biologic if the patient has concomitant IBD and/or severe psoriasis and/or severe PsA or prefers less frequent drug administration.| |
+|6. Treat with MTX over NSAIDs (PICO 9)|Very low (67)|
+|Conditional recommendation based on very-low-quality evidence; may consider NSAIDs before starting MTX in patients with less active disease, after careful consideration of cardiovascular risks and renal risks of NSAIDs.| |
+|7. Treat with an IL-17i biologic over an IL-12/23i biologic (PICO 15)|Very low|

@@ -1,0 +1,3 @@
+| Certolizumab                             | ++                                                                | ++                                                             | ++                                                             |
+| Infliximab, etanercept, adalimumab, golimumab | + (Continue through conception)                                 | + (Continue in first and second trimesters; discontinue in third trimester) | ++                                                             |
+| Rituximab                                | + (Discontinue at conception)                                     | + (Life-/organ-threatening disease)                            | ++                                                             |

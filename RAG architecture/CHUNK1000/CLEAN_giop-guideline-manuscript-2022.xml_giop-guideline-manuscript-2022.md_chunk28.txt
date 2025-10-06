@@ -1,0 +1,4 @@
+|FRAX GC correction|If GC dose is &gt;7.5 mg/day, multiply the 10-year risk of MOF by 1.15 and the hip fracture risk by 1.2†|Not applicable as FRAX is not validated in this age group|
+|Very high fracture risk|Prior OP fracture(s) OR BMD t-score ≤−3.5 OR FRAX (GC-Adjusted) 10-year risk of MOF ≥30% or hip ≥4.5% OR high GC ≥30 mg/day for &gt;30 days OR cumulative doses ≥5 g/y|Prior fracture(s) OR GC ≥30 mg/day OR cumulative ≥5 g/y|
+|High fracture risk|BMD t-score ≤−2.5 but &gt;−3.5 OR FRAX (GC Adjusted) 10-year risk of MOF ≥20% but &lt;30% or hip ≥3% but &lt;4.5%|-|
+|Moderate fracture risk|FRAX (GC-Adjusted) 10-year risk of MOF ≥10 and &lt;20%, hip &gt;1 and &lt;3% OR BMD t-score between −1 and −2.4|Continuing GC treatment ≥7.5 mg/day for ≥6 months AND BMD z-score &lt; −3 OR significant BMD loss (more than the least significant change of DXA)|

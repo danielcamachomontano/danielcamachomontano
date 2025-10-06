@@ -1,0 +1,6 @@
+|Recommendation: In patients with active, severe GPA/MPA, we conditionally recommend a reduced-dose GC regimen over a standard-dose GC regimen for remission induction.|3|Very low to moderate|
+|Remission induction for active, nonsevere disease| | |
+|Recommendation: For patients with active, nonsevere GPA, we conditionally recommend initiating treatment with methotrexate over cyclophosphamide or rituximab.|12, 13|Very low to moderate|
+|Recommendation: For patients with active, nonsevere GPA, we conditionally recommend initiating treatment with methotrexate and GCs over GCs alone.|14|Low|
+|Recommendation: For patients with active, nonsevere GPA, we conditionally recommend initiating treatment with methotrexate and GCs over azathioprine and GCs or mycophenolate mofetil and GCs.|8, 9, 10|Low|
+|Recommendation: For patients with active, nonsevere GPA, we conditionally recommend initiating treatment with methotrexate and GCs over trimethoprim/sulfamethoxazole and GCs.|11|Low|

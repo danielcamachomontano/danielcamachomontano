@@ -1,0 +1,11 @@
+|Do not treat with combination prophylactic heparin or LMWH/low-dose aspirin [46]|Conditional| |
+|Do not treat with HCQ [44A]|Conditional| |
+|OB APS: If no thrombosis but meet OB APS criteria, treat with combination prophylactic heparin or LMWH/low-dose aspirin [48]|Strong| |
+|Do not treat with combination therapeutic heparin or LMWH/low-dose aspirin [49]|Conditional| |
+|Do not treat with addition of IVIG [50]|Conditional| |
+|Do not treat with addition of prednisone [51]|Strong| |
+|Treat with addition of HCQ for combination heparin/low-dose aspirin failure [44B]|Conditional| |
+|Positive anti-Ro/SSA with or without anti-La/SSB|Treat with HCQ during pregnancy [69, 70]|Conditional|
+|If no prior history of neonatal lupus: Serial (interval uncertain) fetal echocardiography in weeks 16–26 [67]|Conditional| |
+|If prior history of neonatal lupus: Weekly fetal echocardiography in weeks 16–26 [68]|Conditional| |
+|Medication|Paternal medication| |

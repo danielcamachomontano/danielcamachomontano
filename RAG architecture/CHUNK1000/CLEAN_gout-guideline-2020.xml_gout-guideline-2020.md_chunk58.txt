@@ -1,0 +1,14 @@
+<ul>
+<li>PICO = population, intervention, comparator, outcomes.</li>
+</ul>
+
+<h1>Table 8. Management of concurrent medications*</h1>
+
+<p>|Recommendation|PICO question|Certainty of evidence|
+|---|---|---|
+|For patients with gout, regardless of disease activity, we conditionally recommend switching hydrochlorothiazide to an alternate antihypertensive when feasible.|47|Very low|
+|We conditionally recommend choosing losartan preferentially as an antihypertensive when feasible.|47|Very low|
+|We conditionally recommend against stopping low-dose aspirin (in those who are taking this medication for appropriate indications).|47|Very low|
+|We conditionally recommend against adding or switching to fenofibrate.|47|Very low|</p>
+
+<h2>* PICO = population, intervention, comparator, outcomes.</h2>

@@ -1,0 +1,9 @@
+<p>|Recommendations|Level of evidence (evidence [refs.] reviewed)†|
+|---|---|
+|In adult patients with active PsA and diabetes who are both OSM- and biologic treatment–naive,| |
+|1. Start an OSM other than MTX over a TNFi biologic (PICO 63a)|Very low (118, 119)|
+|Conditional recommendation based on very-low-quality evidence; may consider starting a TNFi, if the patient has severe PsA§ or severe/active skin disease,¶ when diabetes is well controlled.| |
+|In adult patients with active PsA and frequent serious infections who are both OSM- and biologic treatment–naive,| |
+|2. Start an OSM over a TNFi biologic (PICO 64)|Moderate (33, 120)|
+|Strong recommendation supported by moderate-quality evidence, including a black box warning against the use of a TNFi biologic with regard to increased risk of serious infection.| |
+|3. Start an IL-12/23i biologic over a TNFi biologic (PICO 65)|Very low (33)|

@@ -1,0 +1,5 @@
+| Cyclosporine                                | Twice daily                                  | 1 week after last dose                                         |
+| Tacrolimus                                  | Twice daily (IV and PO)                      | 1 week after last dose                                         |
+| Rituximab (Rituxan)                         | Every 4-6 months                             | Month 7                                                       |
+| Belimumab IV (Benlysta)                     | Monthly                                      | Week 5                                                        |
+| Belimumab SQ (Benlysta)                     | Weekly                                       | Week 2                                                        |</p>

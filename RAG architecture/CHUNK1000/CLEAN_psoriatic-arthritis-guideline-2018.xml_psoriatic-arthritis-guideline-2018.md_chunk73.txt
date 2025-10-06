@@ -1,0 +1,8 @@
+|9. Switch to an IL-17i biologic over tofacitinib (PICO 78)|Low (89–95, 105)|
+|Conditional recommendation based on low-quality evidence; may consider tofacitinib if the patient prefers an oral therapy or has a history of recurrent Candida infections.| |
+|10. Switch to an IL-12/23i biologic over a different OSM (PICO 24)|Low (79–86, 98–100)|
+|Conditional recommendation based on low-quality evidence; may consider switching to a different OSM if the patient prefers an oral versus parenteral therapy or in patients without evidence of severe PsA or severe psoriasis.| |
+|11. Switch to an IL-12/23i biologic over abatacept (PICO 68)|Low (98–100, 103, 104)|
+|Conditional recommendation based on low-quality evidence; may consider abatacept in patients with recurrent or serious infections.| |
+|12. Switch to an IL-12/23i biologic over tofacitinib (PICO 77)|Low (98–100, 105)|
+|---|---|

@@ -1,0 +1,6 @@
+|12. Switch to an IL-12/23i biologic over tofacitinib (PICO 77)|Low (98–100, 105)|
+|---|---|
+|Conditional recommendation based on low-quality evidence; may consider tofacitinib if the patient prefers an oral therapy.|Conditional recommendation based on low-quality evidence; may consider tofacitinib if the patient prefers an oral therapy.|
+|13. Add apremilast to current OSM therapy over switching to apremilast (PICO 22b)|Low (83, 84, 108)|
+|Conditional recommendation based on low-quality evidence; may consider switching to apremilast if the patient has intolerable side effects with the current OSM.|Conditional recommendation based on low-quality evidence; may consider switching to apremilast if the patient has intolerable side effects with the current OSM.|
+|14. Switch to another OSM (except apremilast) over adding another OSM (except apremilast) to current treatment (PICO 22a)|Low (83, 84, 108)|

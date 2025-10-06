@@ -1,0 +1,4 @@
+|Addition of/switching to DMARDs is conditionally recommended over initiation/dose escalation of glucocorticoids for patients with a serious infection within the previous 12 months who have moderate-to-high disease activity.|Very low|PICO 90 and PICO 91|p. 496–7|
+|Nontuberculous mycobacterial lung disease| | | |
+|Use of the lowest possible dose of glucocorticoids (discontinuation if possible) is conditionally recommended over continuation of glucocorticoids for patients with nontuberculous mycobacterial lung disease.|Very low|No relevant PICO| |
+|Addition of csDMARDs is conditionally recommended over addition of a bDMARD or tsDMARD for patients with nontuberculous mycobacterial lung disease who have moderate-to-high disease activity despite csDMARD monotherapy.|Very low|PICO 92|p. 498|

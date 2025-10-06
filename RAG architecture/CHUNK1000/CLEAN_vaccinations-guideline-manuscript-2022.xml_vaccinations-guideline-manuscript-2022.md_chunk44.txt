@@ -1,0 +1,7 @@
+<ul>
+<li>TNF = tumor necrosis factor; IL = interleukin; BLyS = B lymphocyte stimulator; IVIG = intravenous immunoglobulin.</li>
+</ul>
+
+<p>† For patients taking the equivalent of prednisone &lt;20 mg/day or &lt;2 mg/kg/day for patients weighing &lt;10 kg or alternate-day glucocorticoid therapy (i.e., “low-level immunosuppression” [15,68]), these low doses can be continued if vaccination is critical and the risk of a disease flare or adrenal insufficiency when the patient is not taking glucocorticoids is high.</p>
+
+<p>‡ For patients taking methotrexate≤0.4 mg/kg/week or azathioprine ≤3 mg/kg/day (“low-level immunosuppression” [15,68]), hold times can be shortened if vaccination is critical and the risk of a disease flare when the patient is not taking immunosuppression is high.</p>

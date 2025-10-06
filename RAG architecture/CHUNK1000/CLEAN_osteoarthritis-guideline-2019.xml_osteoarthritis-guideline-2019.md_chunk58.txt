@@ -1,0 +1,9 @@
+| Bisphosphonates |  | <span style="background-color: lightcoral;">✖</span> |  |
+| Glucosamine | <span style="background-color: lightcoral;">✖</span> | <span style="background-color: red;">✖</span> | <span style="background-color: red;">✖</span> |
+| Chondroitin sulfate | <span style="background-color: lightgreen;">✔</span> | <span style="background-color: red;">✖</span> | <span style="background-color: red;">✖</span> |
+| Hydroxychloroquine |  | <span style="background-color: lightcoral;">✖</span> |  |
+| Methotrexate |  |  |  |
+| Intraarticular hyaluronic acid injection | (First carpometacarpal) | <span style="background-color: lightcoral;">✖</span> | <span style="background-color: lightcoral;">✖</span> |
+| Intraarticular botulinum toxin |  |  |  |
+| Prolotherapy |  |  |  |
+| Platelet-rich plasma |  | <span style="background-color: lightcoral;">✖</span> | <span style="background-color: lightcoral;">✖</span> |

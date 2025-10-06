@@ -1,0 +1,11 @@
+|Positive aPL|No prior thromboses or OB APS: Prophylactic heparin or LMWH [25A]|Conditional|
+| |No prior thromboses but history of OB APS: Prophylactic heparin or LMWH [25A2]|Strong|
+| |Prior thromboses: Therapeutic heparin or LMWH [26A]|Strong|
+|Fertility preservation|Women: Use gonadotropin-releasing hormone agonist therapy during IV CYC treatment [31]|Conditional|
+| |Men: Sperm cryopreservation pre–CYC treatment|GPS|
+| |Do not use gonadotropin-releasing hormone agonist therapy [35]|Conditional|
+|Menopause/hormone replacement therapy|All RMD|GPS|
+| |RMD without SLE or aPL: Treat with hormone replacement therapy if indicated‡| |
+|SLE|SLE and negative aPL: Treat with hormone replacement therapy if indicated‡ [79]|Conditional|
+|Positive aPL|If no prior thrombosis or OB APS: Do not treat with hormone replacement therapy [80]|Conditional|
+| |If current titers negative, treat with hormone replacement therapy if indicated‡ [83]|Conditional|

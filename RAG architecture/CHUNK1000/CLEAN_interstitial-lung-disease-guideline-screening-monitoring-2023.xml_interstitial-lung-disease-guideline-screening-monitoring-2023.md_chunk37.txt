@@ -1,0 +1,11 @@
+<p>|Voting Panel decision|Certainty of evidence|Following PICO questions|Evidence table in Supplementary Materials 3, page number|
+|---|---|---|---|
+|Conditionally recommend PFTs over history and physical examination alone|Very low|1|1|
+|Conditionally recommend HRCT chest over history and physical examination alone|Very low|2|5|
+|Conditionally recommend against 6MWD over history and physical examination alone|Very low|3|12|
+|Conditionally recommend against chest radiography over history and physical examination alone|Very low|4|13|
+|Conditionally recommend against ambulatory desaturation testing over history and physical examination alone|Very low|5|15|
+|Conditionally recommend HRCT chest over chest radiography|Very low|6|16|
+|Conditionally recommend PFTs over ambulatory desaturation testing|Very low|7|23|
+|Conditionally recommend HRCT chest over PFTs|Low|8|24|
+|Conditionally recommend HRCT chest and PFTs over PFTs alone|Very low|9|34|

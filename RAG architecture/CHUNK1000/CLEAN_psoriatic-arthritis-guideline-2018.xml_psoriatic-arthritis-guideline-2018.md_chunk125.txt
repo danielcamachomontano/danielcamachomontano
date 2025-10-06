@@ -1,0 +1,4 @@
+|3. Start an IL-12/23i biologic over a TNFi biologic (PICO 65)|Very low (33)|
+|Conditional recommendation based on very-low-quality evidence; may consider starting a TNFi if the patient has severe PsA.| |
+|4. Start an IL-17i biologic over a TNFi biologic (PICO 66)|Very low|
+|Conditional recommendation based on very-low-quality evidence; may consider starting a TNFi biologic in patients with concomitant IBD.| |</p>

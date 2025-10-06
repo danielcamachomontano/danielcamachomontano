@@ -1,0 +1,6 @@
+|Nonalcoholic fatty liver disease| | | |
+|Methotrexate is conditionally recommended over alternative DMARDs for DMARD-naive patients with nonalcoholic fatty liver disease, normal liver enzymes and liver function tests, and no evidence of advanced liver fibrosis who have moderate-to-high disease activity.|Very low|PICO 87|p. 489|
+|Persistent hypogammaglobulinemia without infection| | | |
+|In the setting of persistent hypogammaglobulinemia without infection, continuation of rituximab therapy for patients at target is conditionally recommended over switching to a different bDMARD or tsDMARD.|Very low|PICO 66|p. 429|
+|Previous serious infection| | | |
+|Addition of csDMARDs is conditionally recommended over addition of a bDMARD or tsDMARD for patients with a serious infection within the previous 12 months who have moderate-to-high disease activity despite csDMARD monotherapy.|Very low|PICO 88|p. 490|

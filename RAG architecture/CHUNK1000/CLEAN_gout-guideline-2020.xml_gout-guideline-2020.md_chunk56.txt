@@ -1,0 +1,7 @@
+<ul>
+<li>PICO = population, intervention, comparator, outcomes; NSAIDs = nonsteroidal antiinflammatory drugs; IL-1 = interleukin-1; ACTH = adrenocorticotropic hormone; NPO = nothing by mouth (nulla per os).</li>
+</ul>
+
+<p>†High quality of evidence from network meta-analyses supporting canakinumab, which has superior mean pain score reduction and mean day-2 joint tenderness reduction. However, the Voting Panel raised concern that the comparator was weak (triamcinolone 40 mg) and that cost issues significantly favor other agents.</p>
+
+<h1>Table 7. Management of lifestyle factors*</h1>

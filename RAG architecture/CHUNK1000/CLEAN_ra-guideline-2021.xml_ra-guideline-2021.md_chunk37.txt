@@ -1,0 +1,6 @@
+| Disease activity levels refer to those calculated using RA disease activity measures endorsed by the ACR (10).                                   |
+| Recommendations are intended for the general RA patient population and assume that patients do not have contraindications to the options under consideration. |
+| Recommendations are limited to DMARDs approved by the US FDA for treatment of RA.                                                                |
+| csDMARDs: hydroxychloroquine, sulfasalazine, methotrexate, leflunomide.                                                                         |
+| bDMARDs: TNF inhibitors (etanercept, adalimumab, infliximab, golimumab, certolizumab pegol), T cell costimulatory inhibitor (abatacept), IL-6 receptor inhibitors (tocilizumab, sarilumab), anti-CD20 antibody (rituximab)† |
+| tsDMARDs: JAK inhibitors (tofacitinib, baricitinib, upadacitinib).                                                                               |

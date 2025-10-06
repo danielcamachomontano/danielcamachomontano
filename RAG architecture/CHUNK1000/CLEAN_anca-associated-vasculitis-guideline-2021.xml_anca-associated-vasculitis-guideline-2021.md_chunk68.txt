@@ -1,0 +1,4 @@
+|Ungraded position statement: The duration of GC therapy in EGPA should be guided by the patient’s clinical condition, values, and preferences.|21, 22, 23, 29, 30|Very low to low|
+|Treatment of relapse| | |
+|Recommendation: For patients with EGPA who have experienced relapse with severe disease manifestations after prior successful remission induction with cyclophosphamide, we conditionally recommend treatment with rituximab over cyclophosphamide for remission re-induction.|25|Very low|
+|Recommendation: For patients with EGPA who have experienced relapse with severe disease manifestations after prior successful remission induction with rituximab, we conditionally recommend treatment with rituximab over switching to cyclophosphamide for remission re-induction.|25|Very low|

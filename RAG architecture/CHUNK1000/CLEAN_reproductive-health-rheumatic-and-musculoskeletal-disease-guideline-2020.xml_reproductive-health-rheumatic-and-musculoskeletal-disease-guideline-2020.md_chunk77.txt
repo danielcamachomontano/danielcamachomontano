@@ -1,0 +1,9 @@
+| |If current titers negative, treat with hormone replacement therapy if indicated‡ [83]|Conditional|
+| |If prior thrombosis or OB APS and not receiving anticoagulation treatment: Do not treat with hormone replacement therapy [81]|Strong|
+| |If current titers negative, do not treat with hormone replacement therapy [83A]|Conditional|
+| |If prior thrombosis or OB APS and receiving anticoagulation treatment: Do not treat with hormone replacement therapy [82]|Conditional|
+|Pregnancy|All RMD|GPS|
+| |Counseling: Outcomes improved with pregnancy planning, stable disease, compatible medications, and co-management by rheumatology and obstetrics-gynecology/maternal-fetal medicine| |
+| |Pre-pregnancy: Change to pregnancy-compatible medication and observe for stability [42]|Strong|
+| |If active disease during pregnancy: Initiate pregnancy-compatible medication [54]|Strong|
+| |If SLE or SLE-like disease, SS, SSc, or RA: Test once (early) for anti-Ro/SSA and anti-La/SSB [60, 62]|Strong|

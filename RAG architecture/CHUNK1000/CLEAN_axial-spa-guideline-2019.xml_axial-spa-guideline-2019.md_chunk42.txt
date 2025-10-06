@@ -1,0 +1,6 @@
+|6. In adults with active AS despite treatment with NSAIDs, we strongly recommend treatment with TNFi over no treatment with TNFi.|High|6|
+|7. We do not recommend any particular TNFi as the preferred choice.|Moderate|5|
+|8. In adults with active AS despite treatment with NSAIDs, we strongly recommend treatment with secukinumab or ixekizumab over no treatment with secukinumab or ixekizumab.|High|58|
+|9. In adults with active AS despite treatment with NSAIDs, we conditionally recommend treatment with TNFi over treatment with secukinumab or ixekizumab.|Very low|59|
+|10. In adults with active AS despite treatment with NSAIDs, we conditionally recommend treatment with secukinumab or ixekizumab over treatment with tofacitinib.|Very low|61|
+|11. In adults with active AS despite treatment with the first TNFi used, we conditionally recommend treatment with secukinumab or ixekizumab over treatment with a different TNFi in patients with primary nonresponse to TNFi.|Low|8|

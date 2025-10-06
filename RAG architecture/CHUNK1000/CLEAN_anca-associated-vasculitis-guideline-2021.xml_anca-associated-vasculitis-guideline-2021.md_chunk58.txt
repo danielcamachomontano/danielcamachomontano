@@ -1,0 +1,5 @@
+|Recommendation: For patients with GPA/MPA receiving remission maintenance therapy with rituximab who have hypogammaglobulinemia (e.g., IgG &lt;3 gm/liter) and recurrent severe infections, we conditionally recommend immunoglobulin supplementation.|44|Very low|
+|Ungraded position statement: The duration of non-GC remission maintenance therapy in GPA/MPA should be guided by the patient’s clinical condition, preferences, and values.|26|Low to moderate|
+|Ungraded position statement: The duration of GC therapy for GPA/MPA should be guided by the patient’s clinical condition, preferences, and values.|27, 33|Low to moderate|
+|Treatment of disease relapse| | |
+|Recommendation: For patients with GPA/MPA who have experienced relapse with severe disease manifestations and are not receiving rituximab for remission maintenance, we conditionally recommend treatment with rituximab over cyclophosphamide for remission re-induction.|28|Low|

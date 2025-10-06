@@ -1,0 +1,5 @@
+|We strongly recommend against treatment with systemic glucocorticoids.†|Very low|36|
+|In adults with isolated active sacroiliitis despite treatment with NSAIDs, we conditionally recommend treatment with local glucocorticoids over no treatment with local glucocorticoids.†|Very low|45|
+|In adults with active enthesitis despite treatment with NSAIDs, we conditionally recommend using treatment with locally administered parenteral glucocorticoids over no treatment with local glucocorticoids. Peri-tendon injections of Achilles, patellar, and quadriceps tendons should be avoided.†|Very low|46|
+|In adults with active peripheral arthritis despite treatment with NSAIDs, we conditionally recommend using treatment with locally administered parenteral glucocorticoids over no treatment with local glucocorticoids.†|Very low|47|
+|We strongly recommend treatment with physical therapy over no treatment with physical therapy.†|Low|22|

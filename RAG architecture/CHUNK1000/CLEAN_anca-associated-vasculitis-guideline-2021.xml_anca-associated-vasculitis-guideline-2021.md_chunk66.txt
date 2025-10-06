@@ -1,0 +1,8 @@
+<p>|Recommendation/statement|PICO question informing recommendation and discussion|Level of evidence|
+|---|---|---|
+|Remission induction for active, severe disease| | |
+|Ungraded position statement: For patients with active, severe EGPA, either IV pulse GCs or high-dose oral GCs may be prescribed as initial therapy.|3|Very low|
+|Ungraded position statement: For patients with active, severe EGPA, either cyclophosphamide or rituximab may be prescribed for remission induction.|4|Very low|
+|Recommendation: For patients with active, severe EGPA, we conditionally recommend treatment with cyclophosphamide or rituximab over mepolizumab for remission induction.|6, 7|Low|
+|Remission induction for active, nonsevere disease| | |
+|Recommendation: For patients with active, nonsevere EGPA, we conditionally recommend initiating treatment with mepolizumab and GCs over methotrexate, azathioprine, or mycophenolate mofetil and GCs.|8, 9, 10, 13|Very low to low|

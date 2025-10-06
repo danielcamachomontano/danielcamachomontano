@@ -1,0 +1,4 @@
+|Conventional synthetic DMARDs are strongly recommended for inadequate response to or intolerance of NSAIDs and/or IAGCs.|Very low|PICO 15. In children with JIA with active TMJ arthritis, should DMARD therapies be recommended, and should there be any preferred order of treatment: MTX (subcutaneous and oral), LEF, SSZ, and/or HCQ?|58–59|
+|MTX is conditionally recommended as a preferred agent over LEF.| | | |
+|Biologic DMARDs are conditionally recommended for inadequate response to or intolerance of NSAIDs and/or IAGCs and at least 1 conventional synthetic DMARD.|Very low|PICO 16. In children with JIA with active TMJ arthritis, should systemic biologic therapies be recommended, and should there be any preferred order of treatment: TNFi, biologic treatments with other mechanisms of action?|59|
+|There is no preferred biologic agent.| | | |

@@ -1,0 +1,6 @@
+|45. We conditionally recommend screening for osteopenia/osteoporosis with DXA scan over no screening.†|Very low|49|
+|46. In adults with syndesmophytes or spinal fusion, we conditionally recommend screening for osteoporosis/osteopenia with DXA scan of the spine as well as the hips, compared to DXA scan solely of the hip or other non-spine sites.†|Very low|50|
+|47. We strongly recommend against screening for cardiac conduction defects with electrocardiograms.†|Very low|52|
+|48. We strongly recommend against screening for valvular heart disease with echocardiograms.†|Very low|53|
+|49. In adults with AS of unclear activity while on a biologic, we conditionally recommend obtaining a spinal or pelvis MRI to assess activity.|Very low|68|
+|50. In adults with stable AS, we conditionally recommend against obtaining a spinal or pelvis MRI to confirm inactivity.|Very low|69|

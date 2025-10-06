@@ -1,0 +1,8 @@
+<p>| Summary of recommendations |
+|---------------------------|
+| For people with SARDs at increased risk of developing ILD, we conditionally recommend screening with PFTs over history and physical examination or ambulatory desaturation testing alone. |
+| For people with SARDs at increased risk of developing ILD, we conditionally recommend screening with HRCT chest over history and physical examination or PFTs alone. |
+| For people with SARDs at increased risk of developing ILD, we conditionally recommend screening with HRCT chest and PFTs over PFTs alone. |
+| For people with SARDs at increased risk of developing ILD, we conditionally recommend against screening with chest radiography. |
+| For people with SARDs at increased risk of developing ILD, we conditionally recommend against screening with 6MWD. |
+| For people with SARDs at increased risk of developing ILD, we conditionally recommend against screening with ambulatory desaturation testing. |

@@ -1,0 +1,8 @@
+<p>| <strong>Intervention</strong> | <strong>Hand</strong> | <strong>Knee</strong> | <strong>Hip</strong> |
+|-----------------|---------|---------|---------|
+| Topical nonsteroidal antiinflammatory drugs | <span style="background-color: lightgreen;">✔</span> | <span style="background-color: lightgreen;">✔</span> |  |
+| Topical capsaicin | <span style="background-color: lightgreen;">✔</span> |  |  |
+| Oral nonsteroidal antiinflammatory drugs | <span style="background-color: lightgreen;">✔</span> | <span style="background-color: lightgreen;">✔</span> | <span style="background-color: lightgreen;">✔</span> |
+| Intraarticular glucocorticoid injection |  | <span style="background-color: lightgreen;">✔</span> | <span style="background-color: lightgreen;">✔</span> |
+| Ultrasound-guided intraarticular glucocorticoid injection |  |  |  |
+| Intraarticular glucocorticoid injection compared to other injections |  |  |  |

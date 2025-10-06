@@ -1,0 +1,6 @@
+<p>|Recommendation|Certainty of evidence|PICO evidence report(s) basis|Page no(s).|
+|---|---|---|---|
+|Formal recommendation deferred|Very low|PICO 24. In patients with systemic JIA, does the presence of subclinical MAS alter the treatment paradigm?|130|
+|IL-1 and IL-6 inhibitors are conditionally recommended over calcineurin inhibitors alone to achieve inactive disease and resolution of MAS.|Very low|PICO 25. In patients with systemic JIA and overt MAS, is biologic therapy superior to calcineurin inhibitors for achievement of inactive disease and resolution of MAS?|131–136|
+|Glucocorticoids are conditionally recommended as part of initial treatment of systemic JIA with MAS. There is no preferred agent.| | | |
+|Formal recommendation deferred|Very low|PICO 26. For nonresponse or partial response to biologic therapy, is addition of a calcineurin inhibitor superior to etoposide or IVIG or plasmapheresis for achievement of inactive disease and resolution of MAS?|137–138|

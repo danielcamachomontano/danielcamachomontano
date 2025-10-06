@@ -1,0 +1,7 @@
+|5. Switch to a different TNFi biologic (with or without MTX) over adding MTX to the same TNFi biologic monotherapy (PICO 26 and 26A)|Very low|
+|Conditional recommendation based on very-low-quality evidence; may consider adding MTX when patients have demonstrated partial response to the current TNFi biologic therapy, especially if the TNFi biologic is a monoclonal antibody.| |
+|6. Switch to an IL-17i biologic over switching to an IL-12/23i biologic (PICO 29)|Low (90–93, 95, 99, 100)|
+|Conditional recommendation based on low-quality evidence; may consider an IL-12/23i if the patient has IBD or if the patient prefers less frequent drug administration.| |
+|7. Switch to an IL-17i biologic over abatacept (PICO 72)|Low (90–93, 95, 103, 104, 112)|
+|Conditional recommendation based on low-quality evidence; may consider abatacept if the patient prefers IV dosing or in patients with recurrent or serious infections.| |
+|8. Switch to an IL-17i biologic over tofacitinib (PICO 75)|Low (90–93, 105)|

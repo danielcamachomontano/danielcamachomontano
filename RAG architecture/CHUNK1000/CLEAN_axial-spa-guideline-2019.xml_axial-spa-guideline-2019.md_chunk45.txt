@@ -1,0 +1,6 @@
+|21. We conditionally recommend land-based physical therapy interventions over aquatic therapy interventions.†|Moderate|18|
+|22. We conditionally recommend on-demand treatment with NSAIDs over continuous treatment with NSAIDs.|Low to moderate|1|
+|23. In adults receiving treatment with TNFi and NSAIDs, we conditionally recommend continuing treatment with TNFi alone compared to continuing both treatments.|Very low|11|
+|24. In adults receiving treatment with TNFi and a conventional synthetic antirheumatic drug, we conditionally recommend continuing treatment with TNFi alone over continuing both treatments.|Very low|12|
+|25. In adults receiving treatment with a biologic, we conditionally recommend against discontinuation of the biologic.|Very low to low|66|
+|27. In adults receiving treatment with a biologic, we conditionally recommend against tapering of the biologic dose as a standard approach.|Very low|65|

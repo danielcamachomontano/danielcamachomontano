@@ -1,0 +1,3 @@
+<p>| <strong>Term</strong>                                                     | <strong>Adults ≥40 years of age</strong>                                         | <strong>Adults &lt;40 years of age</strong>                                             |
+|--------------------------------------------------------------|---------------------------------------------------------------------|------------------------------------------------------------------------|
+| <strong>Major osteoporotic fracture (MOF)</strong>                        | Non-traumatic or pathological fractures of the spine, hip, wrist, or humerus | Non-traumatic or pathological fractures of the spine, hip, wrist, or humerus |

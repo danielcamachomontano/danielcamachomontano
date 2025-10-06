@@ -1,0 +1,5 @@
+<p>|Recommendations|Certainty of evidence|Evidence report(s) of the following PICO(s)|Evidence table(s), in Supp. App. 2|
+|---|---|---|---|
+|Oral methotrexate is conditionally recommended over subcutaneous methotrexate for patients initiating methotrexate.|Moderate|PICO 9|p. 181|
+|Initiation/titration of methotrexate to a weekly dose of at least 15 mg within 4 to 6 weeks is conditionally recommended over initiation/titration to a weekly dose of &lt;15 mg.|Moderate/very low‡|PICO 10.C1–C3|p. 184–5|
+|A split dose of oral methotrexate over 24 hours or subcutaneous injections, and/or an increased dose of folic/folinic acid, is conditionally recommended over switching to alternative DMARD(s) for patients not tolerating oral weekly methotrexate.|Very low|PICO 16 and PICO 15|p. 206–10|

@@ -1,0 +1,6 @@
+|Massage therapy|Rubbing and kneading of muscles and joints with the hands. Examples include Swedish, Deep Tissue, Trigger Point.|
+|Thermal modalities|Use of heat and cold for medical treatment. Examples include cryotherapy, heat, therapeutic ultrasound, infrared sauna, paraffin therapy, laser therapy.|
+|Electrotherapy|Use of electrical energy for medical treatment. Examples include transcutaneous electrical nerve stimulation (TENS), neuro-muscular electrical nerve stimulation (NMES).|
+|Vagal nerve stimulation|Implantation of a device to stimulate the vagus nerve with electrical impulses.|
+|Chiropractic|Diagnosis and manipulation of malaligned joints, particularly the spine.|
+|Tobacco cessation|Counseling on tobacco cessation, tobacco-cessation programs (via telephone, mobile applications), nicotine-replacement therapies, tobacco cessation medications without nicotine.|</p>

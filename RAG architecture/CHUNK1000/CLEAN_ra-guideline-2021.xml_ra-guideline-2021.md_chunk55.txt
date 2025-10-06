@@ -1,0 +1,6 @@
+|Heart failure| | | |
+|Addition of a non–TNF inhibitor bDMARD or tsDMARD is conditionally recommended over addition of a TNF inhibitor for patients with NYHA class III or IV heart failure and an inadequate response to csDMARDs.|Very low|PICO 70|p. 435|
+|Switching to a non–TNF inhibitor bDMARD or tsDMARD is conditionally recommended over continuation of a TNF inhibitor for patients taking a TNF inhibitor who develop heart failure.|Very low|PICO 71|p. 436|
+|Lymphoproliferative disorder| | | |
+|Rituximab is conditionally recommended over other DMARDs for patients who have a previous lymphoproliferative disorder for which rituximab is an approved treatment and who have moderate-to-high disease activity.|Very low|PICO 75 and PICO 76|p. 446–7|
+|Hepatitis B infection| | | |

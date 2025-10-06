@@ -1,0 +1,11 @@
+<h1>Table 3. Medication management at the time of non–live attenuated vaccine administration</h1>
+
+<p>| |Influenza vaccination|Other non–live attenuated vaccinations|
+|---|---|---|
+|Methotrexate|Hold methotrexate for 2 weeks after vaccination*|Continue methotrexate|
+|Rituximab|Continue rituximab†|Time vaccination for when the next rituximab dose is due, and then hold rituximab for at least 2 weeks after vaccination|
+|Immunosuppressive medications other than methotrexate and rituximab|Continue immunosuppressive medication|Continue immunosuppressive medication|</p>
+
+<ul>
+<li>Hold only if disease activity allows. Non-rheumatology providers, e.g., general pediatricians and internists, are encouraged to give the influenza vaccination and then consult with the patient’s rheumatology provider about holding methotrexate to avoid a missed vaccination opportunity.</li>
+</ul>

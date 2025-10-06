@@ -1,0 +1,4 @@
+|17. In adults with stable axial disease and active enthesitis despite treatment with NSAIDs, we conditionally recommend using treatment with locally administered parenteral glucocorticoids over no treatment with local glucocorticoids. Peri-tendon injections of Achilles, patellar, and quadriceps tendons should be avoided.†|Very low|14|
+|18. In adults with stable axial disease and active peripheral arthritis despite treatment with NSAIDs, we conditionally recommend using treatment with locally administered parenteral glucocorticoids over no treatment with local glucocorticoids.†|Very low|15|
+|19. We strongly recommend treatment with physical therapy over no treatment with physical therapy.†|Moderate|16|
+|20. We conditionally recommend active physical therapy interventions (supervised exercise) over passive physical therapy interventions (massage, ultrasound, heat).†|Very low|17|

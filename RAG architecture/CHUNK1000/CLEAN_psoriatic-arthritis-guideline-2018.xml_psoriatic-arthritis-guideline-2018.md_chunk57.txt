@@ -1,0 +1,6 @@
+<p>|Recommendations|Level of evidence (evidence [refs.] reviewed)†|
+|---|---|
+|In OSM- and other treatment–naive patients with active PsA,| |
+|1. Treat with a TNFi biologic over an OSM (MTX, SSZ, LEF, CSA, or APR) (PICO 10a–e)|Low (53–66)|
+|Conditional recommendation based on low-quality evidence; may consider an OSM if the patient does not have severe PsA,‡ does not have severe psoriasis,§ prefers oral therapy, has concern over starting a biologic as the first therapy, or has contraindications to TNFi biologics, including congestive heart failure, previous serious infections, recurrent infections, or demyelinating disease.| |
+|2. Treat with a TNFi biologic over an IL-17i biologic (PICO 14)|Very low|

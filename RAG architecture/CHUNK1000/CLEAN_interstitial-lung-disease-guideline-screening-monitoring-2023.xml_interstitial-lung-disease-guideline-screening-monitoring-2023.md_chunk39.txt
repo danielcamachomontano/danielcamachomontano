@@ -1,0 +1,5 @@
+<ul>
+<li>This table summarizes the Voting Panel decisions for each intervention and comparator, the certainty of evidence, the associated PICO questions, and the pages in the evidence report where detailed synopsis of the data can be found. After voting, many of the PICO questions were clustered into recommendation statements. We provide this table to be transparent about the process of moving from evidence to recommendation statement. HRCT chest; high-resolution computed tomography of the chest; ILD, interstitial lung disease; PICO, population, intervention, comparison, and outcomes; PFT, pulmonary function test; SARD, systemic autoimmune rheumatic disease; 6MWD, 6-minute walk test distance.</li>
+</ul>
+
+<h1>Table 5. Summary of Voting Panel decisions, PICO questions, and evidence for monitoring of people with SARD-associated ILD that led to recommendations*</h1>

@@ -1,0 +1,6 @@
+<p>|Recommendation/strength of recommendation|Level of evidence|
+|---|---|
+|For patients with RA, AS, PsA, JIA, or all SLE undergoing THA or TKA, continuing the usual dosing of the following DMARDs through surgery is conditionally recommended: methotrexate, leflunomide, hydroxychloroquine, sulfasalazine, and/or apremilast.†|Low to moderate|
+|For patients with RA, AS, PsA, or JIA undergoing THA or TKA, withholding all biologics, including rituximab, prior to surgery and planning the surgery after the next dose is due is conditionally recommended.|Low|
+|For patients with RA, AS, PsA, or JIA undergoing THA or TKA, withholding tofacitinib, baricitinib, and upadacitinib for at least 3 days prior to surgery is conditionally recommended.‡|Low|
+|For patients with SLE (not severe) undergoing THA or TKA, withholding the current dose of mycophenolate mofetil, mycophenolic acid, azathioprine, cyclosporine, mizoribine, or tacrolimus 1 week prior to surgery is conditionally recommended.|Low|

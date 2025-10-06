@@ -1,0 +1,19 @@
+<h1>Table 2. Whether to give or defer non-live attenuated vaccinations in patients taking glucocorticoids, regardless of disease activity</h1>
+
+<p>| |Influenza vaccination|Other non-live attenuated vaccinations|
+|---|---|---|
+|Prednisone ≤ 10 mg daily<em>|++ Give|++ Give|
+|Prednisone &gt; 10 mg and &lt; 20 mg</em>|+ Give|+ Give|
+|Prednisone ≥ 20 mg daily<em>|+ Give|+ Defer</em>*|</p>
+
+<p>*Or the equivalent dose of any other glucocorticoid formulation, or the equivalent pediatric dose.</p>
+
+<p>**Defer vaccination until glucocorticoids are tapered to the equivalent of prednisone &lt; 20 mg daily.</p>
+
+<p>++ Strong Recommendation</p>
+
+<ul>
+<li>Conditional recommendation</li>
+</ul>
+
+<h1>Table 3. Immunosuppressive medication management at the time of live-attenuated virus vaccine administration</h1>

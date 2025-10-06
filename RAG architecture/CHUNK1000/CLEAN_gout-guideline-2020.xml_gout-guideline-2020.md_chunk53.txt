@@ -1,0 +1,9 @@
+<ul>
+<li>PICO = population, intervention, comparator, outcomes; XOI = xanthine oxidase inhibitor; FDA = Food and Drug Administration.</li>
+</ul>
+
+<p>†There is moderate certainty of evidence about the efficacy of the benefits, harms, and high certainty about the costs of pegloticase. For patients with high disease activity, the magnitude of potential benefits outweighs the harms and costs of the drug.</p>
+
+<p>‡ For patients with minimal disease activity, the smaller potential benefits do not outweigh the harms and costs of the drug.</p>
+
+<h1>Table 6. Gout flare management*</h1>

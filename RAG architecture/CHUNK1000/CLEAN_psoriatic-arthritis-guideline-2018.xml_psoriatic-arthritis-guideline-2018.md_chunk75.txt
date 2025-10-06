@@ -1,0 +1,3 @@
+|14. Switch to another OSM (except apremilast) over adding another OSM (except apremilast) to current treatment (PICO 22a)|Low (83, 84, 108)|
+|Conditional recommendation based on low-quality evidence; may consider adding another OSM (except apremilast) to current treatment if the patient has demonstrated partial response to the current OSM.|Conditional recommendation based on low-quality evidence; may consider adding another OSM (except apremilast) to current treatment if the patient has demonstrated partial response to the current OSM.|
+|15. Switch to a TNFi biologic monotherapy over MTX and a TNFi biologic combination therapy (PICO 19)|Low (109–111)|

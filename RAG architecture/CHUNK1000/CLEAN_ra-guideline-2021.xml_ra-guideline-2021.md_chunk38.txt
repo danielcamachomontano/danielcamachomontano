@@ -1,0 +1,5 @@
+| tsDMARDs: JAK inhibitors (tofacitinib, baricitinib, upadacitinib).                                                                               |
+| Triple therapy refers to hydroxychloroquine, sulfasalazine, and either methotrexate or leflunomide.                                              |
+| Serious infection refers to an infection requiring intravenous antibiotics or hospitalization.                                                  |
+| Biosimilars are considered equivalent to FDA-approved originator bDMARDs.                                                                      |
+| Recommendations referring to bDMARDs exclude rituximab unless patients have had an inadequate response to TNF inhibitors (in order to be consistent with FDA approval) or have a history of lymphoproliferative disorder for which rituximab is an approved therapy. |

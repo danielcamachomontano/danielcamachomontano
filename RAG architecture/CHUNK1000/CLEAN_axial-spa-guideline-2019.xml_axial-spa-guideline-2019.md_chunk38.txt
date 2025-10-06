@@ -1,0 +1,4 @@
+|Low-quality evidence|Studies that provide limited confidence about the effect, and the true effect may be substantially different from the estimate.|
+|Very low-quality evidence|Studies that provide very little certainty about the effect, and the true effect may be quite different from the estimate.|
+|Strong recommendation|Action should be favored in almost all patients, usually requiring high-quality evidence, high confidence that future research will not alter the conclusion, AND an assessment that the desirable effects of the intervention outweigh the undesirable effects. Should not be taken to imply that the intervention has large clinical benefits.|
+|Conditional recommendation|Action should be followed in only selected cases, often limited by low-quality evidence, OR when the desirable and undesirable consequences of an intervention are more balanced, OR if patients’ preferences for the intervention are thought to vary widely.|

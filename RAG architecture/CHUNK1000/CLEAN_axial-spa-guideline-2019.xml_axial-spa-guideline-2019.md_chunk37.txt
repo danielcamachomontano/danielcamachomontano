@@ -1,0 +1,7 @@
+|Conventional synthetic antirheumatic drug|Sulfasalazine, methotrexate, leflunomide, apremilast, thalidomide, pamidronate.|
+|Biosimilar|Biopharmaceuticals that are copies of an original biologic medication and tested to be of the same purity and potency as the original. In these recommendations, we refer only to TNFi biosimilars. Examples include infliximab-dyyb, etanercept-szzs, and adalimumab-atto.|
+|TNFi|Infliximab, etanercept, adalimumab, certolizumab, golimumab, and their biosimilars.|
+|TNFi monoclonal antibodies|Infliximab, adalimumab, certolizumab, golimumab.|
+|Biologics|TNFi, abatacept, rituximab, sarilumab, tocilizumab, ustekinumab, secukinumab, ixekizumab.**|
+|High-quality evidence|Studies that provide high confidence in the effect estimate, and new data from future studies are thought unlikely to change the effect.|
+|Moderate-quality evidence|Studies that provide confidence that the true effect is likely to be close to the estimate but could be substantially different.|

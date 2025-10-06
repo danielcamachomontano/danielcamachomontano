@@ -1,0 +1,6 @@
+|We strongly recommend treatment with physical therapy over no treatment with physical therapy.†|Low|22|
+|We conditionally recommend active physical therapy interventions (supervised exercise) over passive physical therapy interventions (massage, ultrasound, heat).|Very low|23|
+|We conditionally recommend land-based physical therapy interventions over aquatic therapy interventions.|Very low|24|
+|We conditionally recommend on-demand treatment with NSAIDs over continuous treatment with NSAIDs.|Very low|33|
+|In adults receiving treatment with TNFi and NSAIDs, we conditionally recommend continuing treatment with TNFi alone compared to continuing both medications.|Very low|43|
+|In adults receiving treatment with TNFi and a conventional synthetic antirheumatic drug, we conditionally recommend continuing treatment with TNFi alone over continuing treatment with both medications.|Very low|44|

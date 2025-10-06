@@ -1,0 +1,14 @@
+<p>|Topic|Recommendation|Strength|
+|---|---|---|
+|Contraception|All RMD|GPS|
+| |Contraception/pregnancy discussion early and regularly; choose contraception based on safety, efficacy, and patient preference| |
+| |Use barrier methods if unable to use other methods|GPS|
+| |Use emergency contraception if necessary [6]|Strong|
+| |Women receiving immunosuppressive medications: Use IUD if desired [7]|Strong|
+| |Women at risk for osteoporosis: Avoid DMPA [10]|Conditional|
+| |Women receiving MMF: Use IUD or 2 other methods together [11]|Conditional|
+| |RMD without SLE or aPL: Use highly effective or effective methods† [1]|Strong|
+| |Highly effective methods preferred to effective methods [1A]|Conditional|
+|SLE|SLE with negative aPL and low/stable disease activity: Use highly effective or effective methods† [2]|Strong|
+| |Highly effective methods preferred to effective methods [2A]|Conditional|
+| |Avoid transdermal estrogen-progestin patch [2B]|Conditional|

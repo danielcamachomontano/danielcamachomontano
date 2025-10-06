@@ -1,0 +1,9 @@
+<p>|Method|Safety in women with RMD|1-year failure rate, %†| |
+|---|---|---|---|
+|Highly effective (LARC)|Copper IUD|Safe in all women with RMD; may increase menstrual bleeding|&lt;1|
+| |Progestin IUD|Safe in all women with RMD; may decrease menstrual bleeding|&lt;1|
+| |Progestin implant|Limited data, but likely safe in all women with RMD|&lt;1|
+|Effective|Progestin-only pill (daily)|Safe in all women with RMD; higher rate of breakthrough bleeding than with combined contraceptives; must take same time every day for efficacy|5–8|
+| |DMPA (IM injection every 12 weeks)|Safe in most women with RMD; exceptions: positive aPL, at high risk for OP|3|
+| |Combined estrogen and progesterone pill (daily)|Safe in most women with RMD; exceptions: positive aPL, very active SLE|5–8|
+| |Transdermal patch (weekly)|Safe in most women with RMD; exceptions: positive aPL, SLE; serum estrogen levels higher than with pill or vaginal ring|5–8|

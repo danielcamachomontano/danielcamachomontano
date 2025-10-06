@@ -1,0 +1,6 @@
+<p>|Recommendation|PICO question|Certainty of evidence|
+|---|---|---|
+|We conditionally recommend testing HLA–B<em>5801 prior to starting allopurinol for patients of Southeast Asian descent (e.g., Han Chinese, Korean, Thai) and African American patients, who have a higher prevalence of HLA–B</em>5801.|12|Very low|
+|We conditionally recommend against HLA–B*5801 testing in all others.| | |
+|For patients with a prior allergic response to allopurinol who cannot be treated with other oral ULT, we conditionally recommend using allopurinol desensitization.|23|Very low|
+|For patients with gout taking febuxostat with a history of CVD or a new CV event, we conditionally recommend switching to an alternative ULT agent if available and consistent with other recommendations in this guideline.|22|Moderate|

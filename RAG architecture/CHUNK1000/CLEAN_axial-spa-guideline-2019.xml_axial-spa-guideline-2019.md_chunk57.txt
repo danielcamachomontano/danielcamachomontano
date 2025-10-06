@@ -1,0 +1,6 @@
+|In adults receiving treatment with a biologic, we conditionally recommend against discontinuation of the biologic.|Low|79|
+|In adults receiving treatment with a biologic, we conditionally recommend against tapering of the biologic dose as a standard approach.|Very low|78|
+|In adults receiving treatment with an originator TNFi, we strongly recommend continuation of treatment with the originator TNFi over mandated switching to its biosimilar.|Very low|76|
+|80. In adults receiving treatment with TNFi, we conditionally recommend against co-treatment with low-dose methotrexate.|Low|77|
+|81. We conditionally recommend the regular-interval use and monitoring of a validated AS disease activity measure.†|Very low|56|
+|82. We conditionally recommend regular-interval use and monitoring of the CRP concentrations or ESR over usual care without regular CRP or ESR monitoring.†|Very low|57|

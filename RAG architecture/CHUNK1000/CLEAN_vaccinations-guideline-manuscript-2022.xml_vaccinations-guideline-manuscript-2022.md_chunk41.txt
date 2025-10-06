@@ -1,0 +1,9 @@
+<p>† Give influenza vaccination on schedule. Delay any subsequent rituximab dosing for at least 2 weeks after influenza vaccination if disease activity allows.</p>
+
+<h1>Table 4. Whether to give or defer non–live attenuated vaccinations that can be safely given to RMD patients taking immunosuppressive medication.</h1>
+
+<p>|                               | <strong>Influenza vaccination</strong>    | <strong>Other non–live attenuated vaccinations</strong> |
+|-------------------------------|------------------------------|--------------------------------------------|
+| <strong>Prednisone ≤10 mg daily<em></strong>   | ++ Give                         |  ++Give                                       |
+| <strong>Prednisone &gt;10 mg and &lt;20 mg</em></strong> | + Give                         | + Give                                       |
+| <strong>Prednisone ≥20 mg daily*</strong>   | + Give                         | + Defer†                                     |</p>

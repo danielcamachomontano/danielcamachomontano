@@ -1,0 +1,7 @@
+<p>antirheumatic drugs (DMARDs)*
+|Recommendations|Certainty of evidence|Evidence report(s) of the following PICO(s)|Supp. App. 2|
+|---|---|---|---|
+|Continuation of all DMARDs at their current dose is conditionally recommended over a dose reduction of a DMARD.|Low|PICO 54.a|p. 381|
+|Dose reduction is conditionally recommended over gradual discontinuation of a DMARD.|Low|PICO 52.C2 and PICO 53. C2|p. 351–5, p. 372–6|
+|Gradual discontinuation is conditionally recommended over abrupt discontinuation of a DMARD.|Low|PICO 52.C1 and PICO 53.C1|p. 351, 372|
+|Gradual discontinuation of sulfasalazine is conditionally recommended over gradual discontinuation of hydroxychloroquine for patients taking triple therapy who wish to discontinue a DMARD.|Very low|PICO 58|p. 400|

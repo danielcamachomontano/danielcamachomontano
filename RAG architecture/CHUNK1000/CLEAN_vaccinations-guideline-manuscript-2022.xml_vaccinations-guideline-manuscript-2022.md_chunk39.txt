@@ -1,0 +1,12 @@
+<h1>Table 2. Glossary of terms</h1>
+
+<p>|Term|Definition|
+|---|---|
+|Adjuvant|An ingredient used in some vaccines that helps create a stronger immune response in patients receiving the vaccine|
+|Immunogenicity|The ability of a vaccine to elicit an immune response|
+|Reactogenicity|Typical symptoms (e.g., fever, sore arm, muscle aches) that occur shortly (days) after vaccine administration either at the site of vaccination or systemically|
+|Seroconversion|Development of antibodies to a pathogen, elicited by a vaccine (or infection), in the blood of an individual who previously did not have detectable antibodies|
+|Seroprotection|An antibody level capable of protecting against infection or disease|
+|Titer|Numerical value indicating the level of antibody against a particular pathogen|</p>
+
+<h1>Table 3. Medication management at the time of non–live attenuated vaccine administration</h1>

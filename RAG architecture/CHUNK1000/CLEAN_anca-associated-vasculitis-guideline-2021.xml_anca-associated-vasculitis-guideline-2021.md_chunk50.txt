@@ -1,0 +1,8 @@
+<p>|Term|Definition|
+|---|---|
+|Active disease|New, persistent, or worsening clinical signs and/or symptoms attributed to GPA, MPA, or EGPA and not related to prior damage|
+|Severe disease|Vasculitis with life- or organ-threatening manifestations (e.g., alveolar hemorrhage, glomerulonephritis, central nervous system vasculitis, mononeuritis multiplex, cardiac involvement, mesenteric ischemia, limb/digit ischemia)|
+|Nonsevere disease|Vasculitis without life- or organ-threatening manifestations (e.g., rhinosinusitis, asthma, mild systemic symptoms, uncomplicated cutaneous disease, mild inflammatory arthritis)|
+|Remission|Absence of clinical signs or symptoms attributed to GPA, MPA, or EGPA, on or off immunosuppressive therapy|
+|Refractory disease|Persistent active disease despite an appropriate course of immunosuppressive therapy|
+|Relapse|Recurrence of active disease following a period of remission|

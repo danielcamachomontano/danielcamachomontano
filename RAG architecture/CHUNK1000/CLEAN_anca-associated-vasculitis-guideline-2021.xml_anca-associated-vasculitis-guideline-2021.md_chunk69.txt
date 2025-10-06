@@ -1,0 +1,4 @@
+|Recommendation: For patients with EGPA who have experienced relapse with nonsevere disease manifestations (asthma and/or sinonasal disease) while receiving methotrexate, azathioprine, or mycophenolate mofetil, we conditionally recommend adding mepolizumab over switching to another agent.|26|Very low|
+|Recommendation: For patients with EGPA who have experienced relapse with nonsevere disease manifestations (asthma and/or sinonasal disease) while receiving low-dose GCs and no other therapy, we conditionally recommend adding mepolizumab over adding methotrexate, azathioprine, or mycophenolate mofetil.|28|Very low|
+|Recommendation: For patients with EGPA and high serum IgE levels who have experienced relapse with nonsevere disease manifestations (asthma and/or sinonasal disease) while receiving methotrexate, azathioprine, or mycophenolate mofetil, we conditionally recommend adding mepolizumab over adding omalizumab.|27|Very low|
+|Other considerations| | |

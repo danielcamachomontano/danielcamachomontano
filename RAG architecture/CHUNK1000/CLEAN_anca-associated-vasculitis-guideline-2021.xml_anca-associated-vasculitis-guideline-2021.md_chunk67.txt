@@ -1,0 +1,5 @@
+|Recommendation: For patients with active, nonsevere EGPA, we conditionally recommend initiating treatment with methotrexate, azathioprine, or mycophenolate mofetil and GCs over GCs alone.|14|Low|
+|Recommendation: For patients with active, nonsevere EGPA, we conditionally recommend initiating treatment with methotrexate, azathioprine, or mycophenolate mofetil and GCs over cyclophosphamide or rituximab and GCs.|11, 12|Very low to low|
+|Remission maintenance| | |
+|Recommendation: For patients with severe EGPA whose disease has entered remission with cyclophosphamide therapy, we conditionally recommend treatment with methotrexate, azathioprine, or mycophenolate mofetil over rituximab for remission maintenance.|15, 16, 17, 18|Very low|
+|Recommendation: For patients with severe EGPA whose disease has entered remission, we conditionally recommend treatment with methotrexate, azathioprine, or mycophenolate mofetil over mepolizumab for remission maintenance.|20|Very low|

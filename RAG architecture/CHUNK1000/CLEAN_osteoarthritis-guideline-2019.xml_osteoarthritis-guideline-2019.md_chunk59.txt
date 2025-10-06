@@ -1,0 +1,3 @@
+| Platelet-rich plasma |  | <span style="background-color: lightcoral;">✖</span> | <span style="background-color: lightcoral;">✖</span> |
+| Stem cell injection |  | <span style="background-color: red;">✖</span> | <span style="background-color: red;">✖</span> |
+| Biologics (tumor necrosis factor inhibitors, interleukin-1 receptor antagonists) | <span style="background-color: red;">✖</span> | <span style="background-color: red;">✖</span> | <span style="background-color: red;">✖</span> |</p>

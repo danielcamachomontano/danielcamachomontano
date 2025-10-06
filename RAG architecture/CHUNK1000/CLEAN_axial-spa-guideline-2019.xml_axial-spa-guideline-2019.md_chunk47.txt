@@ -1,0 +1,5 @@
+|35. In adults with advanced hip arthritis, we strongly recommend treatment with total hip arthroplasty over no surgery.†|Very low|25|
+|36. In adults with severe kyphosis, we conditionally recommend against elective spinal osteotomy.†|Very low|26|
+|37. In adults with acute iritis, we strongly recommend treatment by an ophthalmologist to decrease the severity, duration, or complications of episodes.†|Very low|27|
+|38. In adults with recurrent iritis, we conditionally recommend prescription of topical glucocorticoids over no prescription for prompt at-home use in the event of eye symptoms to decrease the severity or duration of iritis episodes.†|Very low|28|
+|39. In adults with recurrent iritis, we conditionally recommend treatment with TNFi monoclonal antibodies over treatment with other biologics.|Low|29|

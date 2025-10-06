@@ -1,0 +1,4 @@
+|13. Switch to an IL-12/23i biologic over switching to another OSM (PICO 50)|Low (83–86, 98, 100)|
+|Conditional recommendation based on low-quality evidence; may consider switching to another OSM if the patient prefers an oral medication over an injection, or if there are contraindications to an IL-12/23i, such as severe recurrent infections.|Conditional recommendation based on low-quality evidence; may consider switching to another OSM if the patient prefers an oral medication over an injection, or if there are contraindications to an IL-12/23i, such as severe recurrent infections.|
+|In adult patients with active PsA and concomitant active IBD who are both OSM- and biologic treatment–naive,|In adult patients with active PsA and concomitant active IBD who are both OSM- and biologic treatment–naive,|
+|14. Start a monoclonal antibody TNFi biologic over an OSM (PICO 62)|Very low (114)|

@@ -1,0 +1,8 @@
+<p>|Recommendation|PICO question|Certainty of evidence|
+|---|---|---|
+|For patients with 1 or more subcutaneous tophi, we strongly recommend initiating ULT over no ULT.|1|High|
+|For patients with radiographic damage (any modality) attributable to gout, we strongly recommend initiating ULT over no ULT.|2|Moderate|
+|For patients with frequent gout flares (&gt;2/year), we strongly recommend initiating ULT over no ULT.|3|High|
+|For patients who have previously experienced &gt;1 flare but have infrequent flares (&lt;2/year), we conditionally recommend initiating ULT over no ULT.|4|Moderate|
+|For patients experiencing their first flare, we conditionally recommend against initiating ULT over no ULT, with the following exceptions.|5|Moderate|
+|For patients experiencing their first flare and CKD stage &gt;3, SU &gt;9 mg/dl, or urolithiasis, we conditionally recommend initiating ULT.|5|Very low|

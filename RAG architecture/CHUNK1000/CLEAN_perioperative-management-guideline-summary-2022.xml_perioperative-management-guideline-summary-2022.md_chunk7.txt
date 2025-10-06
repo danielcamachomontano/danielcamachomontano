@@ -1,0 +1,7 @@
+| Mycophenolate mofetil               | Twice daily                 | Anytime                                                      |
+| Azathioprine                        | Daily or twice daily        | Anytime                                                      |
+| Cyclosporine                        | Twice daily                 | Anytime                                                      |
+| Tacrolimus                          | Twice daily (IV and PO)     | Anytime                                                      |
+| Rituximab (Rituxan) IV              | Every 4-6 months            | Month 4-6                                                    |
+| Belimumab (Benlysta) Weekly SQ      | Weekly                      | Anytime                                                      |
+| Belimumab (Benlysta) Monthly IV     | Monthly                     | Week 4                                                       |

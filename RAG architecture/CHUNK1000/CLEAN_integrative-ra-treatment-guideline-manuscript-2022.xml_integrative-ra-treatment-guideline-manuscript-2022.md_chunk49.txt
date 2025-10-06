@@ -1,0 +1,13 @@
+<ul>
+<li>Intervention definitions and examples are provided in Table 1. PICO = Population, Intervention, Comparator, and Outcome.</li>
+</ul>
+
+<p>† Available on the Arthritis Care &amp; Research website at https://onlinelibrary.wiley.com/doi/10.1002/acr.25117.</p>
+
+<h1>Table 5. Diet recommendations for the management of rheumatoid arthritis*</h1>
+
+<p>|Recommendation|Certainty of evidence|Evidence Summary|page nos. in Evidence Report Supplementary Appendix 3†|
+|---|---|---|---|
+|We conditionally recommend adherence to a Mediterranean-style diet over no formally defined diet.|Low to moderate|1|8–78|
+|We conditionally recommend against adherence to a formally defined diet, other than Mediterranean-style.|Very low to moderate|1|8–78|
+|We conditionally recommend following established dietary recommendations without dietary supplements over adding dietary supplements.|Very low to moderate|2|79–190|</p>

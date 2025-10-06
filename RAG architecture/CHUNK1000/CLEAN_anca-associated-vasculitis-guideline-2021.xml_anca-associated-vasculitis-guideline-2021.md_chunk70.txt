@@ -1,0 +1,6 @@
+|Other considerations| | |
+|Recommendation: For patients with newly diagnosed EGPA receiving leukotriene inhibitors, we conditionally recommend continuing leukotriene inhibitors over discontinuing them.|33|Very low|
+|Ungraded position statement: Use of leukotriene inhibitors is not contraindicated for patients with EGPA with active asthma and/or sinonasal disease.|34|Very low|
+|Recommendation: For patients with EGPA, we conditionally recommend obtaining an echocardiogram at the time of diagnosis.|2|Very low|
+|Recommendation: For patients with EGPA, we conditionally recommend using the Five-Factor Score to guide therapy.|1|Very low|
+|Ungraded position statement: In patients with sinonasal involvement in EGPA, treatment with nasal rinses and topical therapies (e.g., antibiotics, lubricants, and GCs) may be considered.|31|Very low|

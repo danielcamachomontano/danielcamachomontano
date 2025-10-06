@@ -1,0 +1,7 @@
+<p>§ For medications with &gt;1 dosing interval approved by the Food and Drug Administration, the longest interval should be chosen (e.g., hold subcutaneous adalimumab for 2 weeks, although it can be dosed every 1 or every 2 weeks).</p>
+
+<p>¶ In children with autoinﬂammatory disorders or systemic juvenile idiopathic arthritis in whom the risk of disease flare if biologic disease-modifying antirheumatic drugs are held is very high, shorter hold times can be considered if live attenuated vaccination is critical.</p>
+
+<h1>The recommendation to hold IVIG prior to vaccination is designed to enhance vaccine efﬁcacy, not safety. In some situations, such as during a measles outbreak, earlier vaccination would be preferred over delay.</h1>
+
+<h1>Table 6. When to administer live attenuated rotavirus vaccination to infants exposed to immunosuppressive medications in utero*</h1>

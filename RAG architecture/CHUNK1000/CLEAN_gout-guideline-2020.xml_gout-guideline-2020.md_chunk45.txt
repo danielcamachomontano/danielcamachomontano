@@ -1,0 +1,5 @@
+|We strongly recommend initiating concomitant antiinflammatory prophylaxis therapy (e.g., colchicine, NSAIDs, prednisone/prednisolone) over no antiinflammatory prophylaxis.|9|Moderate|
+|The choice of specific antiinflammatory prophylaxis should be based upon patient factors.| | |
+|We strongly recommend continuing prophylaxis for 3–6 months rather than &lt;3 months, with ongoing evaluation and continued prophylaxis as needed if the patient continues to experience flares.|9|Moderate|
+|When the decision is made that ULT is indicated while the patient is experiencing a gout flare, we conditionally recommend starting ULT during the gout flare over starting ULT after the gout flare has resolved.|6|Moderate|
+|We strongly recommend against pegloticase as first-line therapy.|10|Moderate†|</p>
