@@ -1,0 +1,350 @@
+---
+title: "R-Statistical-Modeling-in-Experimental-Data"
+author: "Daniel Camacho Montaño"
+date: "2024-12-30"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(lme4)
+library(car)
+library(dplyr)
+library(lmtest)
+library(lmerTest)
+```
+
+# Abstract
+
+El presente informe tiene como objetivo analizar dos estudios de carácter biomédico y ambiental mediante modelos estadísticos avanzados. En primer lugar, se evaluó el efecto del tipo de cobertura del suelo y la precipitación sobre las concentraciones de nitrógeno en ríos, empleando modelos de regresión lineal y análisis de varianza para determinar diferencias significativas entre coberturas agrícolas, forestales y urbanas. En segundo lugar, se investigó el efecto del tratamiento con bevacizumab sobre los niveles de creatina en pacientes con cáncer de mama, utilizando modelos lineales mixtos con intercepciones aleatorias para capturar la variabilidad individual de los pacientes y evaluar la influencia del tiempo y del tratamiento sobre la respuesta metabólica. En ambos estudios, se verificaron las suposiciones estadísticas fundamentales —linealidad, homocedasticidad, independencia y normalidad de los residuos— mediante herramientas gráficas y análisis complementarios, garantizando la validez de los modelos. Los resultados muestran que los suelos forestales presentan mayores concentraciones de nitrógeno que los urbanos, mientras que el tratamiento con bevacizumab reduce los niveles promedio de creatina respecto al grupo control, evidenciando efectos significativos de las variables estudiadas en cada contexto.
+
+# Parte 1: Efecto de la cobertura del suelo sobre el nitrógeno
+
+## Introducción. Efecto de la cobertura del suelo en la concentración de nitrógeno en ríos
+
+Las concentraciones de nitrógeno en los ríos suelen estar influenciadas por la cobertura del suelo —agrícola, forestal o urbana—, así como por la precipitación acumulada, la cual puede arrastrar contaminantes desde las cuencas adyacentes. Con el objetivo de evaluar el efecto de la cobertura del suelo sobre las concentraciones de nitrógeno, ajustando por la variabilidad explicada por la precipitación, se analizaron datos provenientes de tres ríos con coberturas de suelo distintas.
+
+Para este análisis, se dispuso de un conjunto de datos que recoge tres muestras independientes de agua por cada tipo de cobertura del suelo (agrícola, forestal y urbana). En cada muestra se registró la concentración de nitrógeno disuelto (mg/L) y la precipitación acumulada en los últimos 30 días (mm).
+
+El resumen estadístico de las variables indica que las concentraciones de nitrógeno oscilan entre 2.9 y 8.2 mg/L, con una media de 5.411 mg/L. La precipitación acumulada varía entre 90 y 200 mm, presentando una media cercana a 139 mm. Cada tipo de cobertura del suelo cuenta con tres observaciones, distribuidas equitativamente entre las categorías agrícola, forestal y urbana.
+
+```{r}
+nitrogeno<-read.csv("nitrogeno.csv", header=TRUE, dec=".", sep=",")
+nitrogeno$Cobertura<-as.factor(nitrogeno$Cobertura)
+summary(nitrogeno)
+```
+
+
+Para explorar la relación entre la precipitación acumulada y la concentración de nitrógeno, se elaboró un gráfico de dispersión mediante el paquete \texttt{ggplot2}, diferenciando los puntos según el tipo de cobertura del suelo. Además, se incluyeron líneas de tendencia ajustadas con un modelo lineal para cada grupo, con el fin de visualizar las posibles relaciones entre las variables.
+
+```{r}
+ggplot(nitrogeno, aes(x = Precipitacion, y = Nitrogeno, color = Cobertura)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Relación entre precipitación y concentración de nitrógeno",
+       x = "Precipitación acumulada (mm)", y = "Concentración de nitrógeno (mg/L)")
+```
+
+Pese a que no se puede ver una interacción clara entre la cobertura del suelo y la precipitación acumulada, se puede ver una tendencia a que ciertas coberturas (como la forestal) presentan mayores concentraciones de nitrogeno, mientras que otras, como la urbana, muestran valores más bajos.
+
+Se observa también que la precipitación acumulada tiene un impacto moderado positivo en las concentraciones de nitrógeno, lo que refuerza su inclusión en el ajuste de los modelos lineales más adelante, identificándola como variable.
+
+En términos de cobertura de suelo, se puede afirmar que las concentraciones son más bajas en zonas urbanas, con valores iniciales de 3mg/L aumentando hasta 4mg/L, mientras que en las zonas agrícolas los valores inciales son de 5mg/L y suben de manera más gradual. En zonas forestales los valores iniciales son más altos, de 6mg/L y crecen rápidamente con la precipitación acumulada a más de 7.5mg/L.
+
+## Modelización del efecto de la cobertura del suelo en la concentración de nitrógeno
+
+Con el objetivo de evaluar si la cobertura del suelo tiene un efecto significativo sobre las concentraciones de nitrógeno en el agua de los ríos, se formularon dos modelos lineales: uno ajustado por la precipitación acumulada y otro sin dicho ajuste. Esta comparación permite determinar la influencia específica de la precipitación como variable explicativa adicional, así como su efecto sobre la capacidad predictiva del modelo.
+
+El modelo ajustado se define mediante la siguiente expresión:
+
+$$\text{Nitrogeno} \sim \text{Cobertura} + \text{Precipitación}$$
+
+```{r}
+modelo_ajustado <- lm(Nitrogeno ~ Cobertura + Precipitacion, data = nitrogeno)
+summary(modelo_ajustado)
+```
+
+El resumen del modelo ajustado muestra que el valor esperado de la concentración de nitrógeno en zonas agrícolas, cuando la precipitación acumulada es cero, es de 3.23 mg/L, correspondiendo al intercepto del modelo. En comparación, las zonas forestales presentan concentraciones promedio más elevadas, aunque estas diferencias no resultan estadísticamente significativas. Por el contrario, las zonas urbanas exhiben concentraciones significativamente menores que las agrícolas, con un valor de *p* = 0.003.
+
+En cuanto a la variable de precipitación, se observa un incremento significativo en la concentración de nitrógeno por cada milímetro adicional de precipitación acumulada (*p* = 0.011). La bondad del ajuste es elevada, con un coeficiente de determinación \( R^2 = 0.9557 \), lo que indica que el modelo explica el 95.57\% de la varianza de los datos. El \( R^2 \) ajustado (0.9291) confirma la solidez del modelo, cuyo *p*-valor global es 0.0008, evidenciando su alta significancia estadística.
+
+Por otro lado, se formuló un segundo modelo sin ajuste por precipitación, definido como:
+
+$$\text{Nitrogeno} \sim \text{Cobertura}$$
+
+
+```{r}
+modelo_no_ajustado <- lm(Nitrogeno ~ Cobertura, data = nitrogeno)
+summary(modelo_no_ajustado)
+```
+
+En este caso, el intercepto corresponde a una concentración promedio de 5.73 mg/L para zonas agrícolas. Las zonas forestales presentan concentraciones medias superiores, aunque sin diferencias significativas respecto a las agrícolas, mientras que las zonas urbanas muestran valores significativamente menores. El modelo no ajustado explica el 82.01\% de la varianza total (\( R^2 = 0.8201 \)), con un \( R^2 \) ajustado de 0.7602, manteniendo significancia global.
+
+La comparación entre ambos modelos evidencia que la inclusión de la variable *Precipitación* mejora sustancialmente la capacidad explicativa, reflejándose en un incremento notable del \( R^2 \) y en la reducción de la variabilidad residual. Aun así, en ambos modelos se observa un efecto significativo de la cobertura urbana sobre la concentración de nitrógeno, mientras que las diferencias en las zonas forestales no alcanzan significancia estadística.
+
+En conjunto, los resultados confirman que la precipitación acumulada actúa como un factor clave para explicar la variabilidad en los niveles de nitrógeno en el agua, y que su inclusión en el modelo resulta fundamental para una representación más precisa del fenómeno estudiado.
+
+
+## Estimación del efecto de la cobertura del suelo en la concentración de nitrógeno
+
+
+Para evaluar el efecto de los distintos tipos de cobertura del suelo en las concentraciones de nitrógeno y analizar cómo varían las estimaciones entre los modelos ajustado y no ajustado, se calcularon los coeficientes de ambos modelos mediante la función `coef()` y se almacenaron en la tabla siguiente.
+
+```{r}
+coef(modelo_ajustado)
+coef(modelo_no_ajustado)
+```
+
+La comparación de los coeficientes obtenidos revela que, en el modelo no ajustado, la cobertura forestal presenta un efecto más pronunciado sobre la concentración de nitrógeno que en el modelo ajustado. Este resultado sugiere que parte del incremento observado en las zonas forestales podría estar influido por la precipitación acumulada, más que por el tipo de cobertura del suelo en sí mismo.
+
+Al incorporar la precipitación como covariable, el efecto de la cobertura forestal se atenúa, indicando que el modelo ajustado logra separar de forma más precisa la contribución de cada factor. En ambos casos, las zonas forestales mantienen concentraciones medias superiores a las urbanas; sin embargo, la magnitud de dicha diferencia disminuye una vez se considera la precipitación.
+
+El modelo ajustado, al controlar una fuente relevante de variabilidad ambiental, proporciona estimaciones más precisas y una interpretación más robusta de los efectos de la cobertura del suelo. En consecuencia, para la evaluación del impacto real de la cobertura sobre la concentración de nitrógeno, resulta preferible utilizar el modelo que incorpora la precipitación acumulada como variable explicativa.
+
+
+## Diagnóstico de las suposiciones del modelo lineal
+
+El diagnóstico de las suposiciones en un modelo de regresión lineal es fundamental para garantizar la validez de las inferencias estadísticas. En este análisis se evaluaron los supuestos de linealidad, independencia de los residuos, homocedasticidad y normalidad de los errores, utilizando tanto herramientas gráficas como pruebas estadísticas.
+
+
+### Linealidad
+
+La suposición de linealidad se verificó mediante la representación de los residuos frente a los valores ajustados, con el objetivo de identificar posibles patrones sistemáticos.
+
+
+
+
+```{r}
+plot(fitted(modelo_ajustado), residuals(modelo_ajustado),
+     main = "Residuos vs Valores Ajustados",
+     xlab = "Valores Ajustados", ylab = "Residuos",
+     pch = 20, col = "blue")
+abline(h = 0, col = "red", lwd = 2)
+
+```
+
+La distribución de los residuos en torno al cero se muestra aleatoria y sin tendencias evidentes, lo que sugiere que el supuesto de linealidad se cumple adecuadamente.
+
+### Independencia de los residuos
+
+La independencia de los residuos se asume válida dado el diseño del muestreo, en el que las observaciones provienen de muestras independientes de diferentes ríos y coberturas del suelo. No existen indicios de dependencia temporal o espacial entre las observaciones.
+
+### Homocedasticidad
+
+La homocedasticidad, o igualdad de varianza de los residuos, se evaluó mediante la prueba de Breusch–Pagan.
+
+```{r warning=FALSE}
+bptest(modelo_ajustado)
+```
+El resultado del test arrojó un valor de p bajo, pero no estadísticamente significativo, lo que permite aceptar la hipótesis nula de homocedasticidad. En consecuencia, se considera que la varianza de los errores es aproximadamente constante a lo largo de los valores ajustados.
+
+
+
+### Normalidad de los residuos
+
+La normalidad de los residuos se examinó tanto de manera gráfica, a través de un gráfico Q–Q, como mediante la prueba de Shapiro–Wilk.
+
+```{r}
+qqnorm(residuals(modelo_ajustado), main = "Q-Q Plot de los Residuos")
+qqline(residuals(modelo_ajustado), col = "red", lwd = 2)
+
+shapiro.test(residuals(modelo_ajustado))
+```
+
+Los residuos se alinean adecuadamente sobre la diagonal teórica del gráfico Q–Q, y la prueba de Shapiro–Wilk presenta un valor de \textit{p} bastante alto y no significativo. Estos resultados indican que los residuos siguen una distribución aproximadamente normal.
+
+En conjunto, las evaluaciones gráficas y estadísticas respaldan que el modelo ajustado cumple satisfactoriamente con las suposiciones fundamentales de la regresión lineal, lo que avala la fiabilidad de las estimaciones y conclusiones derivadas del análisis.
+
+## Determinación de las diferencias significativas entre tipos de cobertura del suelo
+
+Para identificar entre qué tipos de cobertura del suelo existen diferencias significativas en las concentraciones de nitrógeno, se llevó a cabo un análisis de varianza (ANOVA), seguido de una prueba de comparaciones múltiples de Tukey. Este enfoque permite contrastar los efectos medios entre grupos y determinar, con un nivel de confianza del 95%, cuáles presentan diferencias estadísticamente significativas.
+
+```{r warning=FALSE}
+modelo_aov <- aov(Nitrogeno ~ Cobertura + Precipitacion, data = nitrogeno)
+TukeyHSD(modelo_aov)
+```
+
+Dado que la variable *Precipitación* es continua, no es posible incluirla directamente en el test de comparaciones múltiples. Por ello, el análisis de Tukey se aplica únicamente al factor *Cobertura*, evaluando las tres combinaciones posibles entre tipos de suelo: agrícola, forestal y urbano.
+
+Los resultados muestran que existen diferencias significativas en las comparaciones entre las coberturas, siendo las zonas urbanas las que presentan concentraciones de nitrógeno significativamente menores en todos los casos. En concreto, las concentraciones promedio en zonas urbanas son inferiores en aproximadamente 2.2 mg/L respecto a las agrícolas y en 3.43 mg/L respecto a las forestales, mientras que las zonas forestales presentan concentraciones superiores en torno a 1.23 mg/L respecto a las agrícolas.
+
+Desde una perspectiva ecológica, estos resultados son coherentes con la literatura, ya que los suelos urbanos suelen mostrar menor cobertura vegetal y menor actividad biológica que los agrícolas o forestales. La vegetación natural desempeña un papel fundamental en el ciclo del nitrógeno, actuando como filtro y favoreciendo su reciclaje. En cambio, la menor presencia de plantas y microorganismos en ambientes urbanos limita dichos procesos, contribuyendo a la menor concentración observada de nitrógeno disuelto.
+
+# Parte 2. Análisis estadístico del efecto del bevacizumab sobre el metabolismo tumoral en cáncer de mama
+
+## Introducción. Evaluación del efecto del bevacizumab sobre los niveles de creatina
+
+En un estudio biomédico se analizó la relación entre los cambios metabólicos, el tipo de tratamiento y la respuesta tumoral. La investigación incluyó dieciséis metabolitos de doce pacientes, de los cuales seis fueron tratados con bevacizumab combinado con quimioterapia (grupo de tratamiento) y los otros seis recibieron únicamente quimioterapia (grupo de control).
+
+Se realizaron tres biopsias tumorales: la primera antes de iniciar el tratamiento, la segunda después de doce semanas y la tercera a las veinticuatro semanas. En este análisis, el conjunto de datos se limita a los niveles de creatina de cada paciente (mg/dL) medidos en los tres momentos mencionados. Los datos se encuentran en el fichero `data.csv`.
+
+
+```{r}
+data<-read.csv("data.csv", sep=";", header=TRUE, dec=",")
+data$grupo<-as.factor(data$grupo)
+summary(data)
+```
+
+
+## Análisis descriptivo de la evolución de la creatina
+
+Para evidenciar posibles diferencias a nivel de intercepción y pendiente en la relación entre el incremento de creatina y el tiempo, se exploró la evolución de los niveles de creatina mediante un gráfico de dispersión, diferenciando los pacientes según el grupo de tratamiento con bevacizumab y el grupo control.
+
+```{r}
+ggplot(data, aes(x = tiempo, y = creatine, color = grupo)) +
+  geom_line(aes(group = paciente), alpha = 0.5) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(title = "Evolución de creatina por grupo",
+       x = "Tiempo (semanas)", y = "Creatina (mg/dL)")
+```
+
+El gráfico muestra que los niveles de creatina tienden a incrementarse de manera proporcional al tiempo en ambos grupos, aunque con ritmos distintos: el grupo tratado con bevacizumab parece presentar un incremento más marcado respecto al grupo control.
+
+Además, se observa que los niveles de creatina en el grupo tratado son generalmente superiores a los del grupo control, y existe cierta variabilidad intra-grupo, ya que las líneas individuales de cada paciente presentan diferencias tanto en los niveles iniciales de creatina como en la pendiente de evolución.
+
+Este análisis descriptivo sugiere que el tratamiento y el tiempo podrían tener un efecto significativo sobre los niveles de creatina, hipótesis que será evaluada posteriormente mediante modelos lineales mixtos.
+
+
+## Formulación del modelo lineal mixto para evaluar el efecto del tratamiento
+
+Para analizar cómo el tratamiento y el tiempo afectan los niveles de creatina, se planteó un modelo lineal mixto con intercepciones y pendientes aleatorias. Este modelo permite que cada paciente tenga tanto un nivel inicial (intercepto) como una pendiente específica en la evolución de la creatina.
+
+El modelo puede expresarse como:
+
+$$
+creatine_{ij}=\beta_0+\beta_1*tiempo_{ij}+\beta_2*grupo_i+b_{0i}+b_{1i}*tiempo_{ij}+\epsilon_{ij}
+$$
+Dónde:
+
+- \(\beta_0, \beta_1, \beta_2\) representan los efectos fijos: intercepto global, efecto del tiempo y efecto del tratamiento, respectivamente.
+- \(b_{0i}, b_{1i}\) son los efectos aleatorios por paciente, correspondientes a intercepto y pendiente específicos.
+- \(\epsilon_{ij}\) es el error residual.
+
+Los efectos fijos capturan el comportamiento promedio de toda la población de pacientes, mientras que los efectos aleatorios modelan la variabilidad individual de cada paciente.
+
+El ajuste del modelo lineal mixto arrojó los siguientes resultados:
+
+```{r}
+modelo_inter_pend <- lmer(creatine ~ tiempo + grupo + (tiempo | paciente), data = data)
+summary(modelo_inter_pend)
+```
+
+El mensaje de `boundary (singular) fit` indica que existe poca variabilidad entre los pacientes en las pendientes aleatorias ($b_{1i}$) o que los datos no son suficientes para estimar todos los parámetros del modelo.
+
+Respecto a los efectos aleatorios, la varianza de las pendientes es cercana a cero, y la correlación entre intercepto y pendiente es 1, lo que sugiere que las pendientes específicas por paciente no aportan información adicional al modelo.
+
+En cuanto a los efectos fijos, el intercepto promedio de creatina inicial ($\beta_0$) es 0.687, el incremento promedio por semana ($\beta_1$) es 0.018, y la diferencia promedio entre el grupo tratado y el grupo control ($\beta_2$) es -0.078, indicando una reducción de la creatina en el grupo tratado. Todos los efectos fijos resultaron estadísticamente significativos.
+
+La varianza residual es de 0.00535, reflejando la variabilidad explicada por el modelo.
+
+En conclusión, tanto el tiempo como el tratamiento tienen efectos significativos sobre los niveles de creatina.
+
+## Comparación de modelos lineales mixtos: intercepciones aleatorias vs. intercepciones y pendientes aleatorias
+
+Para determinar qué modelo es más adecuado, se compararon dos modelos lineales mixtos mediante un test ANOVA. Este test evalúa si el modelo más complejo (con intercepciones y pendientes aleatorias) mejora significativamente el ajuste en comparación con el modelo más simple.
+
+### Modelos planteados
+
+- **Modelo de intercepciones aleatorias:** cada paciente tiene un nivel inicial diferente, especificado como `(1 | paciente)`.
+
+```{r}
+modelo_inter <- lmer(creatine ~ tiempo + grupo + (1 | paciente), data = data)
+```
+
+- **Modelo de intercepciones y pendientes aleatorias:** cada paciente tiene un nivel inicial y una pendiente específica, especificado como `(tiempo | paciente)`.
+
+
+```{r}
+modelo_inter_pend <- lmer(creatine ~ tiempo + grupo + (tiempo | paciente), data = data)
+```
+
+
+```{r}
+summary(modelo_inter)
+summary(modelo_inter_pend)
+```
+
+Al observar el criterio REML, el modelo de **intercepciones aleatorias** tiene un valor mayor (-52.4) frente al modelo más complejo (-55), lo que sugiere un ajuste general ligeramente mejor. La varianza de las pendientes aleatorias en el modelo complejo es extremadamente baja y el mensaje `boundary (singular) fit` indica que las pendientes adicionales no aportan información relevante y que el modelo es demasiado complejo para los datos disponibles.
+
+### Comparación estadística de los modelos
+
+Para evaluar si la inclusión de pendientes aleatorias mejora significativamente el ajuste, se realizó un test ANOVA entre ambos modelos:
+
+```{r message=FALSE}
+anova(modelo_inter, modelo_inter_pend)
+```
+Los valores de AIC y BIC son ligeramente más bajos para el modelo de intercepciones aleatorias, indicando un mejor balance entre ajuste y complejidad. El valor de Chi-cuadrado y el p-valor mayor a 0.05 muestran que la adición de pendientes aleatorias no mejora significativamente el modelo.
+
+**Conclusión:** el modelo más adecuado para estos datos es el de *intercepciones aleatorias*}*, ya que combina un buen ajuste con menor complejidad y la varianza de las pendientes adicionales no aporta información relevante.
+
+##    Resultados del modelo lineal mixto
+
+Como hemos escogido el modelo más simple (`modelo_inter`), analizaremos el resultado de dicho modelo con summary().
+
+```{r}
+summary(modelo_inter)
+```
+Para evaluar los factores que influyen en la concentración de creatina, se seleccionó el modelo de **intercepciones aleatorias** por paciente, ya que mostró un mejor balance entre ajuste y complejidad en comparación con el modelo con pendientes aleatorias.
+
+#### Efectos aleatorios
+
+La varianza de las intercepciones por paciente fue de 0.001384, indicando una variabilidad inicial leve entre individuos. La varianza residual fue de 0.006793, reflejando la variabilidad no explicada por el modelo.
+
+#### Efectos fijos
+
+Los resultados de los efectos fijos muestran que:
+
+- El **intercepto** (`β0 = 0.696`) representa el nivel promedio inicial de creatina antes de considerar tiempo y tratamiento, y es altamente significativo (`p < 0.001`). 
+- El efecto del **tiempo** (`β1 = 0.018`) indica un incremento promedio significativo de creatina por semana de tratamiento (`p = 3.62 × 10^-12`). 
+- El **grupo de tratamiento** (`β2 = -0.094`) muestra que los pacientes tratados con bevacizumab presentan niveles de creatina más bajos que el grupo control (`p = 0.022`).
+
+En conjunto, estos resultados sugieren que tanto el paso del tiempo como la intervención terapéutica tienen un efecto significativo sobre los niveles de creatina en los pacientes.
+
+
+### Modelo estimado por paciente
+
+El modelo de intercepciones aleatorias por paciente se expresa como:
+
+$$
+creatine_{ij}=(\beta_0+b_{0i})+\beta_1*tiempo_{ij}+\beta_2*grupo_i+\epsilon_{ij}
+$$
+
+Dónde:
+
+- `β0` es el intercepto global del modelo.
+- `b0i` son las intercepciones aleatorias por paciente.
+- `β1` es el coeficiente del tiempo.
+- `β2` es el coeficiente del grupo de tratamiento.
+- `εij` es el término de error aleatorio.
+
+#### Intercepciones aleatorias por paciente
+
+
+Para obtener los coeficientes y las intercepciones aleatorias, se usan la función ranef() para las intercepciones aleatorias, y la función coef() para los coeficientes fijos del modelo.
+
+```{r}
+ranef(modelo_inter)$paciente
+```
+
+La función ranef() permite observar que los pacientes tienen intercepciones que varian de manera pequeña, con valores tantos positivos como negativos, lo que refleja pequeñas diferencias individuales en los niveles basales de creatina. Los valores varían desde -0.0337 hasta 0.0421, lo que indica que algunos pacientes tienen niveles basales más bajos que el promedio.
+
+Los valores de `b0i` muestran pequeñas variaciones individuales en los niveles basales de creatina, con rangos de -0.034 a 0.042. Esto refleja diferencias leves entre pacientes antes de iniciar el tratamiento.
+
+#### Efectos fijos por paciente
+
+Respecto a los efectos fijos, se emplea la función coef().
+
+```{r}
+coef(modelo_inter)
+```
+
+Los coeficientes fijos son constantes para todos los pacientes:
+
+- `β1 = 0.0184`: incremento promedio de creatina por semana.
+- `β2 = -0.094`: efecto del grupo de tratamiento, indicando que los pacientes tratados con bevacizumab presentan niveles de creatina más bajos en promedio que el grupo control.
+
+Combinando los efectos aleatorios y fijos, cada paciente tiene un intercepto inicial ligeramente distinto, mientras que la pendiente temporal y el efecto del grupo son comunes a todos. Esto indica que, aunque los niveles iniciales varían levemente entre pacientes, el incremento de creatina a lo largo del tiempo y la diferencia asociada al tratamiento son consistentes en la cohorte estudiada.

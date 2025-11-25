@@ -1,0 +1,628 @@
+---
+title: "PAC4: Clasificación binaria de hongos comestibles y venenosos"
+author: "Daniel Camacho Montaño"
+date: "2025-01-19"
+output: 
+  pdf_document:
+    toc: true
+    citation_package: natbib
+bibliography: referencias.bib
+---
+
+```{r setup, include=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment = NULL, cache = TRUE)
+
+setwd("D:/ESTUDIOS/UOC/Trimestre 2.1/Machine Learning/PEC4")
+
+library(ggplot2)
+library(tidyr)
+library(caret)
+library(class)
+library(e1071)
+library(C50)
+library(randomForest)
+```
+
+#   Introducción
+
+Los hongos son organismos que, debido a su fisiología, pueden ser comestibles o venenosos, representando un riesgo para la salud si no se identifican correctamente. Para abordar este desafío, desarrollaremos diferentes modelos de aprendizaje que permitirán clasificar hongos según sus características físicas, así como el contexto de su recolección. 
+
+El conjunto de datos utilizados es una versión depurada del conjunto de datos Mushroom para clasificación binaria disponible en el repositorio de Machine Learning de la UCI \cite{mushroom_73}. El conjunto se depuró empleando técnicas como imputación modal, codificación one-hot, normalización z score y selección de características.
+
+#   Exploración de los datos
+
+El conjunto de datos se encuentra contenido en un documento CSV, el cual podremos leer mediante la función `read.csv()`. Debemos, para evitar confusión en la lectura de los datos, que los decimales se determinan mediante <.>, y que los datos cuentan con encabezados, que identifican la variable correspondiente.
+
+```{r}
+mushroom<-read.csv("mushroom_small.csv", header = TRUE, dec = ".")
+head(mushroom)
+```
+
+Una vez cargados, podemos ver que tratamos con `r ncol(mushroom)` variables y `r nrow(mushroom)` registros, todas detectadas de tipo numérico. Conocemos, gracias al contexto de los datos, incluso las variables categóricas como *stem.color* o *gill.color* se registran como numéricas, representando cada valor numérico una categoría diferente. Esta información es relevante, ya que pese a que algunos algoritmos de clasificación no necesitan de variables categóricas, algunos, como las redes neuronales artificiales, necesitan que estén codificadas mediante *one-hot encoding*, ya que en caso contrario no podrán leer bien los datos.
+
+Para profundizar la exploración de los datos, realizaremos un análisis descriptivo de todas las variables mediante la función `summary()`, ya que nos permitirá obtener datos como la media de cada variable, así como el rango de valores de cada variable.
+
+```{r}
+summary(mushroom)
+```
+
+Podemos ver, que las variables, debido a que han sido depuradas mediante una normalización Z-score, no todas tienen la misma escala, como podría ser cuando se escalan con otro método (como el escalado min-max). Por ejemplo, la variable *stem.width* tiene una escala de `r min(mushroom$stem.width)`-`r max(mushroom$stem.width)`, mientras que la variable *cap.diameter* tiene una escala de `r min(mushroom$cap.diameter)`-`r max(mushroom$cap.diameter)`. 
+
+Para poder ver como se distribuyen los datos en cada variable, realizaremos un histograma mediante el paquete `ggplot2`, por lo que primero tendremos que modificar los datos para que tengan un formato "largo".
+
+```{r}
+mushroom_long <- pivot_longer(mushroom, everything(), names_to = "Variable", values_to = "Valor")
+
+ggplot(mushroom_long, aes(x = Valor)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+  facet_wrap(~ Variable, scales = "free", ncol = 3) +
+  theme_minimal() +
+  labs(
+    title = "Distribución de las Variables",
+    x = "Valor",
+    y = "Frecuencia"
+  )
+```
+
+Como hemos mencionado anteriormente, las variables consideradas realmente continuas han sido *cap.diameter*, *stem.height* y *stem.width*. En dichas variables se puede apreciar una distribución en los datos similar a una distribución normal, esperable debido a la transformación de los datos. Aún así, debemos destacar que todas se ven levemente sesgadas negativamente (el centro se ve desplazado hacia la izquierda). 
+
+Como hemos determinado que los datos se han visto normalizados previamente, podemos realizar un análisis de Componentes principales, de manera que podamos ver la relación entre dichas variables. No obstante, para el PCA se deben tener en cuenta solo las variables realmente continuas, ya que asume relaciones lineales entre los datos para obtener las componentes principales, pero pese a estar codificadas, las variables categóricas no siguen este principio.
+
+Por este motivo, crearemos un subgrupo de datos temporal, *mushroom_num*, que nos servirá para realizar el PCA.
+
+```{r}
+# Realizamos el PCA
+mushroom_num<-mushroom[, c("cap.diameter", "stem.height", "stem.width", "class")]
+mushroom_num$class<-as.factor(mushroom_num$class)
+
+pca_result <- prcomp(mushroom_num[, sapply(mushroom_num, is.numeric)], scale = TRUE)
+
+# Extraemos las componentes principales
+pca_df <- data.frame(pca_result$x, TargetClass = mushroom_num$class)
+
+# Calcular la variabilidad explicada por las dos primeras componentes
+explained_variance <- summary(pca_result)$importance[2, 1:2]  # Accedemos a las dos primeras componentes
+PC1_variance <- explained_variance[1] * 100
+PC2_variance <- explained_variance[2] * 100
+
+# Visualizar el PCA
+ggplot(pca_df, aes(x = PC1, y = PC2, color = as.factor(TargetClass))) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  labs(title = "PCA: Componentes principales 1 y 2",
+       x = paste("CP 1 -", round(PC1_variance, 1), "% varianza"),
+       y = paste("CP 2 -", round(PC2_variance, 1), "% varianza"),
+       color = "Clase") +
+  theme_minimal()
+```
+
+Gracias al PCA, podemos ver que la CP1 y la CP2 explican el `r PC2_variance+PC1_variance`% de la variabilidad de los datos, pero las clases 0 y 1 se ven mezcladas en el espacio bidimensional creado por ambas CP, por lo que no podemos afirmar que haya una separación lineal entre ellas, al menos no basándonos en las variables continuas. El hecho de que no se vean separadas claramente no indica que no haya una separación entre las clases, pero requieren de más componentes para poder captar la estructura de los datos, ya que podrían tener patrones no evidentes en este espacio bidimensional.
+
+
+#   Preparación de los datos. Creación de los grupos de entrenamiento y prueba.
+
+Un aspecto importante, y común en todos los algoritmos de clasificación, es que necesitan un grupo de datos en el cual basarse para poder realizar las predicciones. Es decir, todos los algoritmos necesitan aprender, de diferentes maneras, como se comportan los datos para después, con datos no vistos, poder determinar a que clase pertenecen. 
+
+Por este motivo, el conjunto de datos debe dividirse, de manera que el algoritmo se entrene mediante unos datos, conociendo el verdadero valor de la clase objetivo, y posteriormente se pueda evaluar su rendimiento aplicándolo a nuevos datos no vistos anteriormente por el algoritmo. 
+
+Entonces, procederemos a dividir el dataset original en dos subgrupos, un train_data con el 75% de los datos originales para entrenar el algoritmo, y un test_data con el 25% restante, para poder evaluar su rendimiento. Como la selección de registros en los grupos se hace de manera aleatoria, estableceremos una semilla aleatoria, permitiendo su reproducibilidad.
+
+```{r}
+set.seed(39432449)
+train_indices <- sample(seq_len(nrow(mushroom)), size = floor(0.75 * nrow(mushroom)))
+train_data <- mushroom[train_indices, ]
+test_data <- mushroom[-train_indices, ]
+```
+
+Después de la partición, obtenemos el dataset `train_data` con `r nrow(train_data)` registros y el dataset `test_data` con `r nrow(test_data)`.
+
+El algoritmo, una vez entrenado y verificar su rendimiento, debe ser representativo de la población real, no solo de la muestra, ya que en caso contrario, se podría padecer de un sobreajuste a los datos vistos. Como la muestra es una representación de dicha población, los subgrupos deben, a su vez, representar la distribución del dataset original. Para evaluar que realmente sean representativos, debemos estudiar las proporciones de la variable objetivo en los tres grupos de datos. 
+
+```{r}
+mush_prop<-prop.table(table(mushroom$class))
+train_prop<-prop.table(table(train_data$class))
+test_prop<-prop.table(table(test_data$class))
+
+proporciones <- data.frame(
+  `0` = c(mush_prop["0"], train_prop["0"], test_prop["0"]),
+  `1` = c(mush_prop["1"], train_prop["1"], test_prop["1"])
+)
+
+# Nombrar las filas
+rownames(proporciones) <- c("Mushroom", "Train", "Test")
+colnames(proporciones) <- c("0", "1")
+
+# Mostrar la tabla
+print(proporciones)
+```
+
+Vemos, por lo tanto, que las proporciones en los conjuntos de entrenamiento y prueba son muy similares a las del conjunto original, siendo `r proporciones[1,1]*100`%  para los comestibles en el data set original, `r proporciones[2,1]*100`% en el grupo de entrenamiento y `r proporciones[3,1]*100`% en el grupo de prueba. 
+
+Entonces, podemos afirmar que la división de los datos ha mantenido la distribución de las clases objetivo y no resultarán en una falta de representación para la creación y entrenamiento del algoritmo.
+
+#   Modelos de aprendizaje
+
+Los algoritmos de aprendizaje son técnicas utilizadas en Machine Learning para permitir que las máquinas aprendan patrones y estructuras a partir de datos sin necesidad de programación explícita. Estos algoritmos procsan grandes volúmenes de datos, ajustando sus parámetros internos con el objetivo de identificar las relaciones entre los datos.
+
+Existen diferentes tipos de algoritmos, como los supervisados y los no supervisados, teniendo cada uno sus propias ventajas y debilidades, y pudiendo realizar gran variedad de tareas. 
+
+##    k-Nearest Neighbour
+
+El algoritmo k-NN es un método de clasificación supervisada basado en la proximidad entre los datos, ya que funciona identificando los k puntos más cercanos en las características y asignando la clase más frecuente entre esos puntos cercanos. kNN es sencillo y flexible, donde la elección de *k* es un parámetro clave que afectará al rendimiento del modelo.
+
+Una de las necesidades de k-NN se encuentra en que, para que podamos realizar correctamente la predicción (y posteriormente la evaluación del rendimiento), la variable objetivo debe estar en formato `factor`.
+
+```{r}
+train_data$class <- factor(train_data$class)
+test_data$class <- factor(test_data$class)
+```
+
+Una vez todos los datos están en el formato correcto, podemos formular el modelo. A diferencia del resto de algoritmos, el modelo kNN no necesita de una etapa de entrenamiento, ya que ejecuta el algoritmo directamente sobre los datos de entrenamiento y obtiene las predicciones proporcionadas por el algoritmo.  
+
+Para que el algoritmo de kNN funcione correctamente, se tendrán que codificar las variables categóricas, ya que pese a ser codificadas en una escala, las escalas pueden no ser ordinales, de manera que el algoritmo kNN no podrá calcular bien las distancias entre los datos. 
+
+Un método habitual de codificación es el One-Hot Encoding, en que las variables categóricas se dividirán en una matriz de datos. Para poder aplicar dicha codificación, crearemos una nueva función `one_hot_encode` que convierta una variable a factor, obtenga los niveles de dicha variable y cree las columnas necesarias para la codificación. Además, eliminaremos la columna original para asegurar la limpieza de los datos.
+
+```{r}
+one_hot_encode <- function(data, variable) {
+  # Verifica si la variable está en el data frame
+  if (!variable %in% names(data)) {
+    stop("La variable especificada no está en el data frame.")
+  }
+  # Convierte la variable a factor (si no lo es)
+  data[[variable]] <- as.factor(data[[variable]])
+  # Obtén los niveles únicos de la variable
+  levels_var <- levels(data[[variable]])
+  # Crea nuevas columnas para cada nivel (one-hot encoding)
+  for (level in levels_var) {
+    new_col <- paste(variable, level, sep = "_")
+    data[[new_col]] <- as.integer(data[[variable]] == level)
+  }
+  #Elimina la columna original
+  data[[variable]] <- NULL
+  return(data)
+}
+```
+
+Antes de aplicar la función en el conjunto de datos de entrenamiento y prueba, crearemos nuevos test_data y train_data, de manera que los grupos originales no se vean afectados en la modificación, ya que hay algoritmos que no se verán modificados con esta transformación.
+
+```{r}
+#Creamos nuevos datasets
+train_data_onehot<-train_data
+test_data_onehot<-test_data
+
+#Seleccionamos las variables a codificar
+variables_to_encode <- c("cap.shape", "gill.attachment", "gill.color", "season", "stem.color")
+
+#Aplicamos la función al grupo de entrenamiento
+for (var in variables_to_encode) {
+  train_data_onehot <- one_hot_encode(train_data_onehot, var)
+}
+
+#Aplicamos la función al grupo de prueba
+for (var in variables_to_encode) {
+  test_data_onehot <- one_hot_encode(test_data_onehot, var)
+}
+```
+
+La complejidad del algoritmo kNn reside, entre otros parámetros, en el valor de k, ya que determina el número de "vecinos" que considerará antes de atribuir un registro a uno de las clases objetivo. Entonces, el modelo más simple se obtiene con un valor de k=1, en el que el algoritmo asociará los datos al siguiente dato que tenga más cerca. Para poder aplicar el algoritmo, solo debemos especificar los datos de entrenamiento, los de prueba, la clase objetivo y el valor de k.
+
+```{r}
+predictions <- knn(train = train_data_onehot[, -ncol(train_data_onehot)], 
+                     test = test_data_onehot[, -ncol(test_data_onehot)], 
+                     cl = train_data_onehot$class, 
+                     k = 1)
+```
+
+Una vez ejecutado, la función `knn()` nos proporciona las predicciones obtenidas por el algoritmo. Para poder evaluar el rendimiento que ha tenido para clasificar los hongos en comestibles o venenosos, tendremos que generar una matriz de confusión mediante la función `confusionMatrix` del paquete `caret`. Esta matriz, contrapondrá los resultados obtenidos por el algoritmo respecto a las clases reales.
+
+```{r}
+cm_knn_1 <- confusionMatrix(predictions, test_data_onehot$class)
+cm_knn_1
+```
+
+Gracias a la matriz de confusión podemos obtener las métricas del rendimiento, de manera que podemos afirmar que, en el caso de k=1, hemos obtenido una sensibilidad de `r cm_knn_1$byClass["Sensitivity"]*100`%, un valor relativamente bajo. De hecho, el valor de la sensibilidad de este modelo se acerca peligrosamente al azar, ya que al estar cerca del 50%, no habría diferencia entre el usar el algoritmo o hacerlo al azar. En cambio, respecto a la especificidad, hemos obtenido un valor de `r cm_knn_1$byClass["Specificity "]*100`%. En términos de precisión, hemos obtenido un valor de `r cm_knn_1$overall["Accuracy"]*100`%. 
+
+En general, el modelo de kNN con k=1 no ha resultado bastante bueno, pero ha sido un buen punto de inicio en búsqueda de un buen clasificador. Aún así, podemos mejorar el rendimiento de este algoritmo mediante el proceso de reformular el algoritmo con diferentes valores de k. 
+
+Aunque a simple vista, se pueda pensar que cuantos mayor valor de k sea, menos tendencia a sobreajustarse y mayor rendimiento tendrá, pero este crecimiento no es ilimitado. Si se incrementa de manera desmesurada, sigue existiendo el riesgo de sobreajuste, pero además, se podría presentar un sesgo que haría menos sensible al modelo a patrones complejos en los datos. 
+
+Por lo tanto, evaluaremos el modelo kNN con diferentes valores de k, y los contrapondremos evaluando la sensibilidad, especificidad y precisión. Para evitar realizar manualmente el algoritmo para los diferentes valores de k, crearemos un bucle que ejecute el algoritmo y las matrices de confusión.
+
+Antes del bucle, primero tendremos que establecer los diferentes valores de k en `k_values` y un dataframe `results` vacío en el que posteriormente registraremos los resultados
+
+```{r}
+k_values <- c(1, 3, 5, 7, 11)
+
+results <- data.frame(k = k_values, Accuracy = numeric(length(k_values)), 
+                      Sensitivity = numeric(length(k_values)),
+                      Specificity = numeric(length(k_values)))
+```
+
+En cuanto al bucle, primero obtendremos las predicciones en base a los diferentes valores de k, para posteriormente realizar la matriz de confusión y, finalmente, guardaremos el rendimiento de los diferentes modelos. 
+
+```{r}
+for (k in k_values) {
+  # Entrenar el modelo KNN y realizar la predicción
+  predictions <- knn(train = train_data_onehot[, -ncol(train_data_onehot)], 
+                     test = test_data_onehot[, -ncol(test_data_onehot)], 
+                     cl = train_data_onehot$class, 
+                     k = k)
+  
+    cm <- confusionMatrix(predictions, test_data_onehot$class)
+    
+      # Almacenar las métricas en el data frame
+  results[results$k == k, "Accuracy"] <- cm$overall["Accuracy"]
+  results[results$k == k, "Sensitivity"] <- cm$byClass["Sensitivity"]
+  results[results$k == k, "Specificity"] <- cm$byClass["Specificity"]
+}
+
+print(results)
+```
+
+Vemos que, de entre todos los valores de k, el que ha obtenido un valor de sensibilidad máximo ha sido `r (results[which.max(results$Sensitivity),"k"])`, mientras que el que ha obtenido la mejor especificidad ha sido `r (results[which.max(results$Specificity),"k"])`. En base a la precisión general del modelo, el que ha tenido un valor máximo ha sido `r (results[which.max(results$Accuracy),"k"])`.
+
+Tal y como hemos comentado anteriormente, el hecho de ampliar al máximo el valor de k no ha resultado en una mejora absoluta del rendimiento del modelo y, de hecho, se ha visto reducida la sensibilidad respecto a modelos más simples. Este resultado no implica que el algoritmo no sea correcto, pero parece ser que deben tenerse en cuenta otros parámetros para tratar de mejorar el rendimiento. Por ejemplo, pese a que sabemos que se ha procedido 
+
+##    Naive Bayes (laplace o no laplace)
+
+NaiveBayes es un algoritmo de clasificación que se basa en el teorema de Bayes, que utiliza una suposición de independencia condicional entre las características del conjunto de datos. Entonces, este modelo calcula la probabilidad de que una observación pertenezca a cada clase posible basándose en las probabilidades de las características dadas las clases. Este modelo es especialmente útil en la clasificación binaria, como la clasificación comestible-venenoso.
+
+NB puede manejar directamente las variables categóricas, pero estan deben estar en formato de factor para ser leídas correctamente. Recordemos que, pese a saber que tenemos variables categóricas, estas siguen como formato numérico, por lo que antes de entrenar el modelo tendremos que modificarlas.
+
+```{r}
+train_data_nb<-train_data
+test_data_nb<-test_data
+
+variables_to_factor <- c("cap.shape", "gill.attachment", "gill.color", "season", "stem.color")
+
+for (var in variables_to_factor) {
+  train_data_nb[[var]] <- as.factor(train_data_nb[[var]])
+}
+
+for (var in variables_to_factor) {
+  test_data_nb[[var]] <- as.factor(test_data_nb[[var]])
+}
+```
+
+Para poder entrenar el modelo, necesitaremos la función `naiveBayes` del paquete `e1071`, en que tendremos que especificar la variable objetivo (`class`), y el grupo de entrenamiento (`train_data`). A diferencia del modelo anterior, en NaiveBayes sí que es necesario un entrenamiento del modelo para que, posteriormente, realice las predicciones con la función `predict()`. 
+
+```{r}
+nb_model <- naiveBayes(class ~ ., data = train_data_nb)
+predictions <- predict(nb_model, newdata = test_data_nb)
+```
+
+Para poder evaluar la capacidad del algoritmo NaiveBayes, realizaremos una matriz de confusión, que nos permitirá ver, de todos las predicciones realizadas por NB, cuáles han resultado correctas.
+
+```{r}
+cm_nb <- confusionMatrix(predictions, test_data_nb$class)
+cm_nb
+```
+
+La clasificación con NB ha resultado relativamente bueno, con una especificidad de `r cm_nb$byClass["Specificity"]*100`%, pero la sensibilidad no ha sido muy buena `r cm_nb$byClass["Sensitivity "]*100`% y, de hecho, la precisión obtenida del `r cm_nb$overall["Accuracy"]*100`% es bastante mediocre. 
+
+Así como en k-NN se puede mejorar el rendimiento del modelo mediante los valores k, el algoritmo de NaiveBayes también tiene opciones para mejorar su rendimiento. 
+
+El suavizado de Laplace es una técnica usada en el cálculo de probabilidades cuando las probabilidades tienen una frecuencia de cero. En NaiveBayes es especialmente útil cuando una característica no aparece en los datos de entrenamiento pero sí en los de prueba, haciendo que la probabilidad de esa característica sea cero y guardando ese valor para futuras predicciones.
+
+Para poder aplicar esta técnica, el algoritmo de NB contiene la opción `laplace`, y para activarla solo debemos establecer un valor de 1. Debemos tener en cuenta que, para que el suavizado de Laplace sea efectivo, el algoritmo debe encontrar múltiples datos no vistos anteriormente, ya que en caso contrario, no tiene efecto alguno.
+
+```{r}
+nb_model_lp <- naiveBayes(class ~ ., 
+                          data = train_data_nb, 
+                          laplace = 1)
+```
+
+Para poder evaluar el rendimiento del algoritmo modificado, volveremos a calcular las predicciones del nuevo modelo y realizaremos de nuevo una matriz de confusión con los valores reales. Para poder evaluar el rendimiento del nuevo modelo, y poder verificar si se ha visto mejorado con el suavizado de Laplace, crearemos un nuevo dataframe con las métricas de ambos modelos.
+
+```{r}
+predictions_lp <- predict(nb_model_lp, newdata = test_data_nb)
+cm_nb_lp <- confusionMatrix(predictions_lp, test_data_nb$class)
+```
+
+```{r}
+results_NB <- data.frame(
+  Model = c("Sin Laplace", "Con Laplace"),
+  Sensitivity = c(cm_nb$byClass["Sensitivity"], cm_nb_lp$byClass["Sensitivity"]),
+  Specificity = c(cm_nb$byClass["Specificity"], cm_nb_lp$byClass["Specificity"]),
+  Accuracy = c(cm_nb$overall["Accuracy"], cm_nb_lp$overall["Accuracy"])
+)
+
+results_NB
+```
+En el dataframe vemos que no se ha modificado el rendimiento notablemente después de aplicar laplace. De hecho, las métricas se han visto incrementadas muy ligeramente, con la sensibilidad siendo incrementada un `r (results_NB[1,2]-results_NB[2,2])/results_NB[2,2]*100`% , la especificidad con un `r (results_NB[1,3]-results_NB[2,3])/results_NB[2,3]*100` y la precisión siendo incrementada un `r (results_NB[1,4]-results_NB[2,4])/results_NB[2,4]*100`.
+
+Esto, lejos de ser algo anormal, sucede debido a que en el grupo de prueba no se proporcionan datos no vistos anteriormente en el aprendizaje y, por lo tanto, laplace no ha tenido efecto alguno en los cálculos de las probabilidades. Podemos afirmar, entonces, que aplicar laplace no aporta mejora alguna respecto al modelo sin laplace, pero no podemos afirmar que no mejoraría con otro grupo de datos no vistos.
+
+##    Artificial Neural Network
+
+Las Artificial Neural Network (ANN) son modelos computacionales que se inspiran en el funcionamiento del cerebro humano, y están diseñados para resolver problemas complejos. Estos modelos utilizan capas de neuronas (nodos) interconectados para procesar los datos, aprender los patrones y realizar tareas de predicción o clasificación. 
+
+Este modelo se puede emplear mediante diferentes bibliotecas, las cuales se encuentran especializadas en Python en lugar de R, , por lo que este método se analizará en el notebook `PEC4- Artificial Neural Networks.ipynb`.
+
+Después de realizar un modelo con 1 capa densa de 10 nodos, se realizó un modelo con 2 capas densas de 10 nodos, en interés de mejorar el rendimiento del modelo original. El resultado de ambos modelos se muestra en el siguiente dataframe.
+
+```{r}
+results_ann <- data.frame(
+  Model = c("1 capa", "2 capas"),
+  Accuracy = c(0.9377, 0.8592),
+  Sensitivity = c(0.8689, 0.7799),
+  Specificity = c(0.9261, 0.9608)
+)
+
+results_ann
+```
+
+Pese a ampliar la red neuronal con una capa neuronal densa, vemos que la precisión ha descendido desde un 93,77% a un 85,92%, por lo que el añadir una capa más no solo no ha mejorado su rendimiento, si no que todo lo contrario. Respecto a la sensibilidad, también ha descendido a un 77,99%, pero la especificidad, en cambio, ha incrementado hasta un 96,08%.
+
+Sabemos que, el añadir más capas y nodos puede hacer el modelo más flexible y capaz de captar relaciones complejas, pero en nuestro modelo, el hecho de añadirlas parece sobreajustarse a los datos de entrenamiento. Esto puede ser porque los modelos más complejos requieren más datos para entrenarse correctamente sin sobreajustarse.
+
+Debemos, debido a nuestros datos, decantarnos más por el diseño más simple, el cual ha obtenido un mejor rendimiento en general.
+
+##    Support Vector Machine
+
+El SVM es un algoritmo de aprendizaje supervisado usado para la clasificación y regresión. El objetivo principal es encontrar un hiperplano en un espacio de características que separe las diferentes clases de datos con la distancia entre hiperplano y los puntos más amplia posible. Los SVM emplean el *kernel trick* para mapear los datos a un espacio de mayor dimensión y así poder separar linealmente los datos. 
+
+Para implementar este modelo, utilizaremos la función `svm()` del paquete `e1071`. Para el entrenamiento, el algoritmo necesita la variable objetivo (`class`) y el conjunto de entrenamiento. Como el SVM utiliza cálculos basados en distancias, la opción `scale` permite escalar los datos, optimizando los cálculos del modelo y mejora la estabilidad numérica del modelo. También es importante tener en cuenta que el algoritmo SVM no puede gestionar las variables categoricas como factor, y deben ser codificadas con técnicas como One-Hot Encoding. 
+
+El modelo más simple de SVM es el modelo SVM lineal, el cual crea una simple hiperplano lineal que dividirá los datos, pero existen opciones más avanzadas. Además, activaremos la función de escalado, ya que de esta manera, se equilibrarán los rangos en los datos.
+
+```{r}
+svm_lineal <- svm(class ~ ., 
+                 data = train_data_onehot, 
+                 kernel = "linear", 
+                 scale = TRUE)
+
+svm_lineal
+```
+
+Gracias a la función `summary()`, podemos ver que el modelo ha generado un total de `r nrow(svm_lineal$SV)` vectores de soporte, es decir, son los puntos más cercanos al hiperplano lineal que determinarán la posición de este. Estos puntos son los más importantes para construir el modelo, ya que definen el margen del hiperplano.
+
+Para evaluar el modelo, realizaremos predicciones en base a los datos no observados de test_data. De esta manera, y gracias a una matriz de confusión, podremos ver como de efectivo ha sido este algoritmo.
+
+```{r}
+svm_predictions_linear <- predict(svm_lineal, test_data_onehot)
+cm_svm_l <- confusionMatrix(svm_predictions_linear, test_data_onehot$class)
+cm_svm_l
+```
+
+Vemos, que con un kernel lineal, hemos obtenido una sensibilidad de `r cm_svm_l$byClass["Sensitivity"]*100`% y una especificidad de `r cm_svm_l$byClass["Specificity "]*100`%, que son relativamente buenos. En general, se ha obtenido una precisión del `r cm_svm_l$overall["Accuracy"]*100`%. 
+
+Estos no son unos malos resultados, pero tienen un gran margen de mejora. Podemos decir que , el hiperplano lineal generado ha podido dividir de manera satisfactoria los datos, pero no ha podido capturar totalmente la relación entre los datos, ya que no parecen tener una partición lineal. Una manera habitual de mejorar el rendimiento es modificar el tipo de kernel, modificando el cálculo del hiperplano. Además del kernel lineal, existen variantes como el polinómico, sigmoide o gaussiano. 
+
+En concreto, el kernel gaussiano (radial) realiza una transformación no lineal al proyectar los datos en un espacio de características más alto. Esto, debido a que hemos verificado que una transformación lineal no ha resultado lo suficientemente buena, permitirá manejar unas relaciones más complejas entre los datos, ya que el espacio proyectado tiene una curvatura que facilitará la separación no lineal. 
+
+Para poder aplicar el kernel gaussiano, debemos modificar la opción `kernel` de lineal a `radial`.
+
+```{r}
+svm_gauss <- svm(class ~ ., 
+                 data = train_data_onehot, 
+                 kernel = "radial", 
+                 scale = TRUE)
+
+summary(svm_gauss)
+```
+Con un kernel radial, ahora los vectores de soporte se ha incrementado a `r nrow(svm_lineal$SV)`, lo cual es habitual, ya que el kernel radial eleva los datos a un hiperplano más elevado, siendo más complejo, pero que puede ajustarse más eficazmente a los datos incluso cuando no son linealmente separables.
+
+Para poder analizar la posible mejora en la clasificación, realizaremos las nuevas predicciones y analizaremos el rendimiento.
+
+```{r}
+svm_predictions_gauss <- predict(svm_gauss, test_data_onehot)
+cm_svm_g <- confusionMatrix(svm_predictions_gauss, test_data_onehot$class)
+cm_svm_g
+```
+
+En el nuevo modelo, vemos que la nueva sensibilidad se ha visto incrementada a un `r cm_svm_g$byClass["Sensitivity"]*100`%, mientras que la especificidad ahora es de `r cm_svm_g$byClass["Specificity "]*100`% y la precisión es de `r cm_svm_l$overall["Accuracy"]*100`%. 
+
+Para poder comparar los resultados de ambos modelos, visualizaremos ambos rendimientos en un data frame (`results_svm`) con sus métricas de rendimiento.
+
+```{r}
+results_svm <- data.frame(
+  Model = c("Linear", "Radial"),
+  Accuracy = c(cm_svm_l$overall["Accuracy"], cm_svm_g$overall["Accuracy"]),
+  Sensitivity = c(cm_svm_l$byClass["Sensitivity"], cm_svm_g$byClass["Sensitivity"]),
+  Specificity = c(cm_svm_l$byClass["Specificity"], cm_svm_g$byClass["Specificity"])
+)
+results_svm
+```
+
+```{r include=FALSE}
+accuracy_mejora <- ((results_svm$Accuracy[2] - results_svm$Accuracy[1]) / results_svm$Accuracy[1]) * 100
+sensitivity_mejora <- ((results_svm$Sensitivity[2] - results_svm$Sensitivity[1]) / results_svm$Sensitivity[1]) * 100
+specificity_mejora <- ((results_svm$Specificity[2] - results_svm$Specificity[1]) / results_svm$Specificity[1]) * 100
+```
+
+Vemos, gracias a la comparación, que los valores máximos de los tres parámetros han sido logrados con el modelo radial, obteniendo una mejora del `r accuracy_mejora`% en la precisión, una mejora del `r sensitivity_mejora`% en la sensibilidad y un aumento del `r specificity_mejora` en la especificidad.
+
+Podemos afirmar, entonces, que el modelo radial ha sido capaz de capturar patrones más complejos en los datos que el modelo lineal no pudo. Esta mejora no indica que el modelo lineal sea intrínsicamente peor que un modelo radial, sino que el modelo radial funciona mejor con nuestros datos, debido a que es más flexible y captura relaciones más complejas entre los datos. 
+
+##    Árboles de decisión: boosting o no boosting
+
+Un método de clasificación ampliamente usado son los árboles de decisión, un método que divide los datos en subconjuntos basados en sus características, utilizando reglas de decisión simples individuales. El árbol resultante será generado en modo jerárquico, donde los nodos representarán una prueba sobre una caracterísitca, y las "hojas" serán las clases obtenidas a partir de dichas decisiones.
+
+Este modelo es fácil de interpretar, y permite manejar datos no lineales. Para poder crear el algoritmo, emplearemos la función `C5.0()` del paquete `C50`. Esta función creará un árbol (`trials=1`) a partir de las características (`train_data[-9]`) y la clase objetivo (`train_data$class`). 
+
+A diferencia del resto de algoritmos vistos hasta ahora, los árboles de decisión son los suficientemente flexibles como para no necesitar transformación en los datos más allá de la normalización, de manera que pueden captar las variables categóricas sin necesidad de codificación.
+
+```{r}
+model_c50<-C5.0(train_data[-9], 
+                train_data$class, 
+                trials = 1,
+                costs= NULL)
+
+model_c50
+```
+
+El árbol generado tiene un tamaño de `model_c50$size`, lo que significa que tenemos un total de `model_c50$size` nodos, incluyendo los nodos de decisión (internos) como los nodos hojas (clases). Un árbol tan grande podría indicar que es bastante complejo, y puede ser un indicio de sobreajuste, por lo que evaluaremos el rendimiento del modelo.
+
+Es decir, realizaremos predicciones en base a los datos de prueba para ver, en datos no vistos, la capacidad de generalización del modelo.
+
+```{r}
+predict_c50<-predict(model_c50, test_data, type = "class")
+cm_c50 <- confusionMatrix(predict_c50, test_data$class)
+cm_c50
+```
+
+El árbol de decisión ha obtenido valores muy buenos tanto en sensibilidad (`r cm_c50$byClass["Sensitivity"]*100`%), como en especificidad (`r cm_c50$byClass["Specificity "]*100`%) y hasta en la precisión general (`r cm_c50$overall["Accuracy"]*100`%). 
+
+Estos valores han resultado ser extremadamente superiores en comparación a algunos de los modelos planteados anteriormente. Aún así, como el resto de algoritmos, los árboles de decisión tienes sus propias herramientas de mejora. La manera más sencilla de mejorar este tipo de agloritmo es empleando un boosting, el cual creará una secuencia de árboles donde cada nuevo modelo corrige los errores cometidos por los árboles anteriores, mejorando cada vez más y, por ende, tomará mejores decisiones.
+
+Para poder aplicar boosting, debemos especificar la opción `trials` con el número de árboles que queremos emplear.
+
+```{r}
+model_c50_boost<-C5.0(train_data[-9], 
+                train_data$class, 
+                trials = 10,
+                costs= NULL)
+model_c50_boost
+```
+
+Como no hemos generado un solo árbol de decisión, ahora debemos evaluar el tamaño promedio de los árboles, teniendo en nuestro caso un tamaño medio de `r mean(model_c50_boost$size)`. Ya podemos ver, entonces, que el tamaño promedio ha resultado menor al árbol único de decisión, lo que nos permite intuir que los árboles han resultado más efectivos en sus decisiones.
+
+Para poder determinar si, tal y como se intuye por el tamaño de los árboles, el modelo con boosting es superior al modelo con un solo árbol, calcularemos las predicciones del nuevo modelo y visualizaremos las métricas del rendimiento.
+
+```{r}
+predict_c50_boost<-predict(model_c50_boost, test_data, type = "class")
+cm_c50_boost <- confusionMatrix(predict_c50_boost, test_data$class)
+cm_c50_boost
+```
+
+Vemos, que el nuevo modelo ha obtenido una sensibilidad del `r cm_c50_boost$byClass["Sensitivity"]`, una especificidad del `r cm_c50_boost$byClass["Specificity"]` y una precisión general de `r cm_c50_boost$overall["Accuracy"]`.
+
+Para poder determinar cual de los dos modelos es realmente mejor, crearemos un dataframe que nos permita comparar las métricas de ambos modelos.
+
+```{r}
+results_c50 <- data.frame(
+  Model = c("Sin boosting", "Con boosting"),
+  Accuracy = c(cm_c50$overall["Accuracy"], cm_c50_boost$overall["Accuracy"]),
+  Sensitivity = c(cm_c50$byClass["Sensitivity"], cm_c50_boost$byClass["Sensitivity"]),
+  Specificity = c(cm_c50$byClass["Specificity"], cm_c50_boost$byClass["Specificity"])
+)
+results_c50
+```
+
+```{r include=FALSE}
+accuracy_mejora_c50 <- ((results_c50$Accuracy[2] - results_c50$Accuracy[1]) / results_c50$Accuracy[1]) * 100
+
+sensitivity_mejora_c50 <- ((results_c50$Sensitivity[2] - results_c50$Sensitivity[1]) / results_c50$Sensitivity[1]) * 100
+
+specificity_mejora_c50 <- ((results_c50$Specificity[2] - results_c50$Specificity[1]) / results_c50$Specificity[1]) * 100
+```
+
+
+Vemos, gracias a la comparación, que los valores máximos de los tres parámetros han sido obtenidos con el modelo con boosting, obteniendo una mejora del `r accuracy_mejora_c50`% en la precisión, una mejora del `r sensitivity_mejora_c50`% en la sensibilidad y un aumento del `r specificity_mejora_c50` en la especificidad.
+
+No parece una mejora sustancial, pero teniendo en cuenta que el rendimiento del modelo de un solo árbol ya era bastante bueno, la mejora hace que la clasificación sea casi perfecta, con una tasa de error mínima `r (1-results_c50$Accuracy[2])*100`%.
+
+##    Random forest
+
+Como hemos visto, aumentar la cantidad de árboles ha resultado en un mejor rendimiento del modelo. Siguiendo este principio, los Random Forest es un algoritmo de clasificación que utiliza múltiples árboles de decisión para mejorar la precisión. Cada árbol se entrenará con un subconjunto aleatorio de los datos de entrenamientos y de las características, reduciendo el sobreajuste.  A diferencia de un árbol único, incluso con boosting, el modelo obtenido del Random Forest generará un modelo más robusto y preciso al combinar las predicciones de varios árboles independientes.
+
+Este modelo se puede implementar mediante la función `randomForest()` del paquete `randomForest`, y requiere de las características de entrenamiento y de la clase objetivo (como los árboles de decisión). Además, la función permite, mediante la opción `ntree`, establecer la cantidad de árboles generados en el bosque.
+
+```{r}
+model_forest_50<-randomForest(train_data[-9],
+                           train_data$class,
+                           ntree=50)
+model_forest_50
+```
+
+Los modelos obtenidos con RF nos proporcionan una métrica de evaluación, la estimación OOB. Debemos tener en cuenta que en este tipo de algoritmo, no todos los árboles ven los mismos datos, ya que los RF sufren un proceso de bootstrap en que cada árbol se entrenan con un subgrupo de datos del conjunto de entrenamiento. Este proceso nos proporciona una tasa de error de clasificación en las muestras no utilizadas.
+
+El modelo con n=`r model_forest_50$ntree`, nos ha permitido obtener un estimador OOB del `r model_forest_50$oob.error*100`%. Este valor no es indicativo directo del rendimiento del modelo, ya que para poder evaluar que tan bien funciona debemos obtener las predicciones del modelo con el conjunto de datos de prueba.
+
+```{r}
+predictions_forest_50 <- predict(model_forest_50, test_data)
+cm_forest_50 <- confusionMatrix(predictions_forest_50, test_data$class)
+cm_forest_50
+```
+
+El bosque ha obtenido valores muy buenos tanto en sensibilidad (`r cm_forest_50$byClass["Sensitivity"]*100`%), como en especificidad (`r cm_forest_50$byClass["Specificity "]*100`%) y hasta en la precisión general (`r cm_forest_50$overall["Accuracy"]*100`%). 
+
+Este rendimiento es bastante bueno, con una precisión cercana a la perfección, pero con cierto margen de mejora. Para ello, se puede ampliar la cantidad de árboles creados en el bosque, de manera que se ampliará al doble de árboles que el bosque original.
+
+```{r}
+model_forest_100<-randomForest(train_data[-9],
+                           train_data$class,
+                           ntree=100)
+
+model_forest_100
+```
+
+Como era de esperar, el estimador OOB se ha visto reducido a un `r model_forest_100$oob.error*100`%.  Este descenso es habitual, ya que cuanto mayor es el bosque, el riesgo a sobreajuste es menor, y por lo tanto las predicciones tienden a ser más confiables, bajando el valor del estimador.
+
+Para poder evaluar si el modelo más grande es mejor, obtendremos las predicciones del nuevo modelo, y evaluaremos el rendimiento a través de una matriz de confusión.
+
+```{r}
+predictions_forest_100 <- predict(model_forest_100, test_data)
+cm_forest_100 <- confusionMatrix(predictions_forest_100, test_data$class)
+cm_forest_100
+```
+
+Vemos, que el nuevo modelo ha obtenido una sensibilidad del `r cm_forest_100$byClass["Sensitivity"]`, una especificidad del `r cm_forest_100$byClass["Specificity"]` y una precisión general de `r cm_forest_100$overall["Accuracy"]`. Estos valores son muy cercanos a ser casi perfectos, tal y como eran los obtenidos con el bosque original.
+
+Para poder determinar cual de los dos modelos es realmente mejor, crearemos un dataframe que nos permita comparar las métricas de ambos modelos.
+
+```{r}
+results_rf <- data.frame(
+  Model = c("n=50", "n=100"),
+  Accuracy = c(cm_forest_50$overall["Accuracy"], cm_forest_100$overall["Accuracy"]),
+  Sensitivity = c(cm_forest_50$byClass["Sensitivity"], cm_forest_100$byClass["Sensitivity"]),
+  Specificity = c(cm_forest_50$byClass["Specificity"], cm_forest_100$byClass["Specificity"])
+)
+
+results_rf
+```
+
+```{r include=FALSE}
+accuracy_mejora_rf <- ((results_rf$Accuracy[2] - results_rf$Accuracy[1]) / results_rf$Accuracy[1]) * 100
+
+sensitivity_mejora_rf <- ((results_rf$Sensitivity[2] - results_rf$Sensitivity[1]) / results_rf$Sensitivity[1]) * 100
+
+specificity_mejora_rf <- ((results_rf$Specificity[2] - results_rf$Specificity[1]) / results_rf$Specificity[1]) * 100
+```
+
+Vemos, gracias a la comparación, que no existen diferencias muy significativas entre los dos modelos. De hecho, las diferencias en sensibilidad, especificidad y precisión se han visto alterados un `r sensitivity_mejora_rf`%, un `r specificity_mejora_rf` y un `r accuracy_mejora_rf` respectivamente. 
+
+#   Conclusión y discusión
+
+
+En este análisis se evaluaron distintos modelos de clasificación, considerando métricas clave como precisión, sensibilidad y especificidad para determinar cuál ofrece el mejor desempeño en términos generales. Cada modelo tiene características particulares que explican su rendimiento y sus limitaciones. Para cada modelo, se ha escogido aquel que, debido a su configuración, parámetros y rendimiento, ha resultado más adecuado para nuestros datos.
+
+```{r include=FALSE}
+best_k <- results[which.max(results$Accuracy), ]
+best_nb <- results_NB[which.max(results_NB$Accuracy), ]
+best_ann <- results_ann[which.max(results_ann$Accuracy), ]
+best_svm <- results_svm[which.max(results_svm$Accuracy), ]
+best_c50<- results_c50[which.max(results_c50$Accuracy), ]
+best_rf <- results_rf[which.max(results_rf$Accuracy), ]
+
+colnames(best_k)[colnames(best_k) == "k"] <- "Model"
+
+best_models <- rbind(
+  cbind(best_k, Method = "k-NN"),
+  cbind(best_nb, Method = "NaiveBayes"),
+  cbind(best_ann, Method = "ANN"),
+  cbind(best_svm, Method = "SVM"),
+  cbind(best_c50, Method = "C5.0"),
+  cbind(best_rf, Method = "Random Forest")
+)
+best_models <- best_models[, c("Method", "Model", "Sensitivity", "Specificity", "Accuracy")]
+```
+
+```{r}
+best_models
+```
+
+El modelo de k-Nearest Neighbors (k-NN) alcanzó una precisión de 68.24%, una sensibilidad del 61.39% y una especificidad del 74.02%. Este algoritmo es uno de los más simples, basado únicamente en la idea de clasificar una instancia según la mayoría de las clases de sus vecinos más cercanos. Aunque es intuitivo y fácil de implementar, su desempeño es altamente dependiente de la elección de k y de la métrica de distancia utilizada. En este caso, k=11 parece no haber sido suficiente para capturar correctamente las relaciones en los datos, lo que explica su baja sensibilidad y precisión general. Además, kNN es especialmente útil en datos con relaciones lineales, por lo que limita su capacidad de predicción.
+
+El modelo de Naive Bayes mostró el rendimiento más bajo, con una precisión del 64.32%, una sensibilidad del 53.01% y una especificidad del 73.87%. Este algoritmo asume que las variables predictoras son independientes entre sí, pero eso es algo rara vez ocurre en datasets reales como el nuestro. Esta simplicidad lo hace rápido y eficiente, pero también limita su capacidad para capturar relaciones complejas. Además, se empleó el suavizado de Laplace, pero no resulto significativo en el aumento de la precisión.
+
+Las redes neuronales artificiales (ANN) son modelos inspirados en la estructura del cerebro humano, y están especialmente diseñados para capturar relaciones complejas entre las variables. En nuestro caso, con una sola capa logramos una precisión del 93.77%, sensibilidad del 86.89% y especificidad del 92.61%. Su buen desempeño puede atribuirse a su capacidad para adaptarse a patrones complejos en los datos. Sin embargo, el modelo mostró una sensibilidad más baja en comparación con Random Forest y C5.0, lo que indica que tiene una mayor tasa de falsos negativos. Esto puede ser porque tenemos una deficiencia en la capacidad de generalización en nuestra arquitectura, pero también refleja la necesidad de ajsutes precisos en los hiperparámetros para alcanzar su máximo potencial. A pesar de esto, sigue siendo una opción bastante competitiva.
+
+El modelo de Máquinas de Soporte Vectorial (SVM) con kernel radial obtuvo una precisión del 85.72%, una sensibilidad del 83.75% y una especificidad del 87.38%. Este algoritmo es particularmente útil para problemas con fronteras de decisión no lineales, ya que utiliza un kernel para proyectar los datos en un espacio de mayor dimensión donde las clases sean más separables y, concretamente el kernel radial, causa una curvatura en la división que permite capturar patrones más complejos. Aún asi, su desempeño no fue tan destacado en comparación con Random Forest o C5.0, posiblemente debido a la naturaleza del dataset, que podría no ajustarse perfectamente al enfoque de separación por márgenes máximos que emplea el SVM. Como medida de mejora, podrían intentarse diferentes tipos de kernel o parámetros de regularización.
+
+El modelo árboles de decisión C5.0 con boosting mostró un desempeño comparable al de Random Forest, con una precisión del 98.04%, sensibilidad del 97.55% y especificidad del 98.45%. Debemos recordar que C5.0 es una evolución de los árboles de decisión tradicionales, diseñada para manejar datos categóricos y numéricos de forma eficiente, apropiado a nuestros datos. El uso del boosting ha mejorado el rendimiento al entrenar múltiples árboles secuenciales, logrando un modelo final más preciso, y ha logrado ser muy efectivo.
+
+Finalmente, el modelo Random Forest se destacó como el más robusto, logrando una precisión del 98.32%, una sensibilidad del 97.55% y una especificidad del 98.97%. Este algoritmo ha combinado múltiples árboles de decisión, obteniendo un modelo más estable y menos propenso al sobreajuste. El hecho de combinar votaciones de los árboles ha  garantizado su desempeño consistente, sobretodo en datos con estructuras complejas. En especial, su alta especificidad, sensibilidad y precisión lo convierten en una herramienta ideal para minimizar los errores de clasificación. Aún así, debemos tener en cuenta que los RF tienen un coste computacional alto, lo que podría requerir mayores recursos en algunas aplicaciones.
+
+En conclusión, los modelos Random Forest y C5.0 con boosting han resultado ser las opciones más recomendables debido a su excelente precisión, sensibilidad y especificidad, lo que los hace ideales para tareas críticas. Las ANN (1 capa) representan una alternativa competitiva, aunque con menor sensibilidad, y os modelos de SVM, k-NN y Naive Bayes son menos adecuados para este problema debido a sus limitaciones inherentes y a su bajo desempeño relativo. 
